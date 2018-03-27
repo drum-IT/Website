@@ -78,7 +78,7 @@ nav {
   background: linear-gradient(to right, var(--gold), rgba(199, 172, 98, 0));
   content: "";
   display: block;
-  height: 3px;
+  height: 2px;
   position: absolute;
   margin-top: 2px;
   width: 40px;
@@ -92,7 +92,7 @@ nav {
   background: linear-gradient(to right, var(--gold), rgba(199, 172, 98, 0));
   content: "";
   display: block;
-  height: 3px;
+  height: 2px;
   position: absolute;
   margin-top: 2px;
   width: 40px;
