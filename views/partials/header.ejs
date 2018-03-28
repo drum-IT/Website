@@ -19,8 +19,12 @@
       </h1>
       <nav class="nav--big">
         <div class="nav__section">
-          <a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
-          <a class="nav__link <%= page === 'about' ? 'active' : ''%>" href="/about">About</a>
+					<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
+					<% if (!user) { %>
+					<% } else { %>
+					<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
+					<% } %>
+          <!-- <a class="nav__link <%= page === 'about' ? 'active' : ''%>" href="/about">About</a> -->
           <!-- <a class="nav__link" href="contactus.html">Contact Us</a> -->
           <!-- <a class="nav__link" href="info.html">Projects</a> -->
         </div>
