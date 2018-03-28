@@ -30,12 +30,14 @@
           <% if (!user) { %>
           <a href="/login" class="nav__link <%= page === 'login' ? 'active' : ''%>">Sign In</a>
           <a href="/register" class="nav__link <%= page === 'register' ? 'active' : ''%>">Sign Up</a>
-          <% } else { %>
-						<a href="#" class="dropdown__link--big">
+					<% } else { %>
+						<a href="#" class="dropdown__link">
 							<div class="dropdown--big">
 								<span class="nav__link">Signed in as <%= user.username %></span>
 								<div class="dropdown__content dropdown__content--big">
-									<div class="dropdown__spacer--big"> </div>
+									<div class="dropdown__spacer--big">
+										
+									</div>
 									<div class="dropdown__content--visible dropdown__content--visible--big">
 										<a class="nav__link" href="#">My Profile</a>
 										<a class="nav__link" href="/reset">Reset Password</a>

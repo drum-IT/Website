@@ -108,14 +108,6 @@ nav {
 	width: 0px;
 }
 
-.dropdown__link--big {
-	color: var(--offwhite);
-	cursor: default;
-	margin: 0 0 0 -30px;
-	padding: 0;
-	text-decoration: none;
-}
-
 .nav__divider {
 	background: white;
 	height: 60px;
@@ -137,6 +129,10 @@ nav {
 	font-size: 2rem;
 }
 
+.dropdown__link {
+	text-decoration: none;
+}
+
 .dropdown__content--big {
 	opacity: 0;
 	pointer-events: none;
@@ -144,13 +140,11 @@ nav {
 	right: 0;
 	top: 0;
 	padding: 0;
-	outline: 1px dashed red;
 }
 
 .dropdown__spacer--big {
 	height: 90px;
 	pointer-events: none;
-	outline: 1px dashed blue;
 	top: 0;
 }
 
