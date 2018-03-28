@@ -1,7 +1,6 @@
 /* GLOBALS */
 
 :root {
-	/* --black: #191c1f; */
 	--black: #292e33;
 	--lightblack: hsla(210, 11%, 50%, 1);
 	--gold: #c7ac62;
@@ -133,12 +132,6 @@ nav {
 	text-decoration: none;
 }
 
-.dropdown__link--big {
-	text-decoration: none;
-	padding: 0;
-	margin-left: -35px;
-}
-
 .dropdown__content--big {
 	opacity: 0;
 	pointer-events: none;
@@ -164,8 +157,8 @@ nav {
 	justify-items: end;
 }
 
-.dropdown__content--visible--big {
-	padding: 5px 40px 20px 20px;
+.dropdown__content--visible {
+	padding: 20px 40px 20px 20px;
 }
 
 .dropdown--big:hover > .dropdown__content--big {
@@ -173,7 +166,7 @@ nav {
 	pointer-events: all;
 }
 
-.dropdown__link:active > .dropdown__content--big {
+.dropdown__big:active > .dropdown__content--big {
 	opacity: 1;
 	pointer-events: all;
 }
@@ -182,7 +175,7 @@ nav {
 	pointer-events: all;
 }
 
-.dropdown__link:active > .dropdown__spacer--big {
+.dropdown__big:active > .dropdown__spacer--big {
 	pointer-events: all;
 }
 
@@ -206,7 +199,7 @@ nav {
 }
 
 .dropdown__content--visible--small {
-	padding: 5px 20px 20px 20px;
+	padding: 20px;
 }
 
 .dropdown--small:hover > .dropdown__content--small {

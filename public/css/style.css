@@ -207,14 +207,14 @@ span.psw {
 }
 
 /* Social Media Links */
-.fa {
+/* .fa {
   padding: 20px;
   font-size: 30px;
   width: 200px;
   text-align: center;
   text-decoration: none;
   margin: 5px 2px;
-}
+} */
 
 .fa:hover {
     opacity: 0.7;

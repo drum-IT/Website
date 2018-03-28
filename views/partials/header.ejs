@@ -31,53 +31,50 @@
           <a href="/login" class="nav__link <%= page === 'login' ? 'active' : ''%>">Sign In</a>
           <a href="/register" class="nav__link <%= page === 'register' ? 'active' : ''%>">Sign Up</a>
 					<% } else { %>
-						<a href="#" class="dropdown__link dropdown__link--big">
-							<div class="dropdown--big">
-								<span class="nav__link">Signed in as <%= user.username %></span>
-								<div class="dropdown__content dropdown__content--big">
-									<div class="dropdown__spacer--big">
-										
-									</div>
-									<div class="dropdown__content--visible dropdown__content--visible--big">
-										<a class="nav__link" href="#">My Profile</a>
-										<a class="nav__link" href="/reset">Reset Password</a>
-										<a class="nav__link" href="/logout">Sign Out</a>
-									</div>
+						<div class="dropdown--big">
+							<span class="nav__link">Signed in as <%= user.username %></span>
+							<div class="dropdown__content dropdown__content--big">
+								<div class="dropdown__spacer--big">
+									
+								</div>
+								<div class="dropdown__content--visible dropdown__content--visible--big">
+									<a class="nav__link" href="#">My Profile</a>
+									<a class="nav__link" href="/reset">Reset Password</a>
+									<a class="nav__link" href="/logout">Sign Out</a>
 								</div>
 							</div>
-						</a>
+						</div>
           <% } %>
         </div>
 			</nav>
+
 			<nav class="nav--small">
-				<a href="#" class="dropdown__link">
-					<div class="dropdown--small">
-						<i class="dropdown__icon fas fa-bars"></i>
-						<div class="dropdown__content dropdown__content--small">
-							<div class="dropdown__spacer">
+				<div class="dropdown--small">
+					<i class="dropdown__icon fas fa-bars"></i>
+					<div class="dropdown__content dropdown__content--small">
+						<div class="dropdown__spacer">
+							
+						</div>
+						<div class="dropdown__content--visible dropdown__content--visible--small">
+							<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
+							<% if (!user) { %>
+							<% } else { %>
+							<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
+							<% } %>
+							<div class="dropdown__divider--small">
 								
 							</div>
-							<div class="dropdown__content--visible dropdown__content--visible--small">
-								<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
-								<% if (!user) { %>
-								<% } else { %>
-								<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
-								<% } %>
-								<div class="dropdown__divider--small">
-									
-								</div>
-								<% if (!user) { %>
-								<a href="/login" class="nav__link <%= page === 'login' ? 'active' : ''%>">Sign In</a>
-								<a href="/register" class="nav__link <%= page === 'register' ? 'active' : ''%>">Sign Up</a>
-								<% } else { %>
-								<a class="nav__link" href="#">My Profile</a>
-								<a class="nav__link" href="/reset">Reset Password</a>
-								<a class="nav__link" href="/logout">Sign Out</a>
-								<% } %>
-							</div>
+							<% if (!user) { %>
+							<a href="/login" class="nav__link <%= page === 'login' ? 'active' : ''%>">Sign In</a>
+							<a href="/register" class="nav__link <%= page === 'register' ? 'active' : ''%>">Sign Up</a>
+							<% } else { %>
+							<a class="nav__link" href="#">My Profile</a>
+							<a class="nav__link" href="/reset">Reset Password</a>
+							<a class="nav__link" href="/logout">Sign Out</a>
+							<% } %>
 						</div>
 					</div>
-				</a>
+				</div>
 			</nav>
     </header>
 
