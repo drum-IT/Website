@@ -133,6 +133,12 @@ nav {
 	text-decoration: none;
 }
 
+.dropdown__link--big {
+	text-decoration: none;
+	padding: 0;
+	margin-left: -35px;
+}
+
 .dropdown__content--big {
 	opacity: 0;
 	pointer-events: none;
