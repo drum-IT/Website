@@ -109,7 +109,7 @@ nav {
 	pointer-events: none;
 	transition: all 250ms;
 	top: 50px;
-	width: 100px;
+	width: 130px;
 }
 
 .dropdown--nav:hover:after {
