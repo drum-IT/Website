@@ -38,9 +38,10 @@ header {
 	padding: 0 40px 0 20px;
 }
 
-header h1 {
+.brand {
 	color: var(--offwhite);
 	margin-right: 20px;
+	text-decoration: none;
 }
 
 nav {
@@ -122,36 +123,90 @@ nav {
 	width: 0px;
 }
 
-.dropdown--nav .nav__link:hover:after {
-	background: none;
-	content: "";
-	display: none;
-	height: 0px;
-	position: absolute;
-	margin-top: 0px;
-	width: 0px;
-}
-
-.dropdown__content .nav__link {
-	font-size: 0.8rem;
-	text-align: left;
-	transition: all 100ms;
-}
-
-.dropdown__content .nav__link:hover {
-	margin-left: 5px;
-}
-
-.dropdown:hover > .dropdown__content {
-	opacity: 1;
-	pointer-events: all;
-}
-
 .nav__divider {
 	background: white;
 	height: 60px;
 	margin: 0 30px;
 	width: 1px;
+}
+
+.nav--small {
+	display: none;
+}
+
+.dropdown__icon {
+	color: var(--offwhite);
+	font-size: 2rem;
+}
+
+.dropdown__content--big {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.dropdown__spacer--big {
+	height: 90px;
+	pointer-events: none;
+}
+
+.dropdown__content--visible--big {
+	background: var(--black);
+	border-radius: 0 0 0 5px;
+	display: grid;
+	grid-auto-flow: row;
+	grid-gap: 20px;
+	justify-items: end;
+	padding: 20px;
+}
+
+.dropdown--big:hover > .dropdown__content--big {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.dropdown--big:hover > .dropdown__spacer--big {
+	pointer-events: all;
+}
+
+.dropdown__content--small {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.dropdown__spacer {
+	height: 90px;
+	pointer-events: none;
+}
+
+.dropdown__divider--small {
+	background: var(--offwhite);
+	height: 1px;
+	width: 100%;
+}
+
+.dropdown__content--visible {
+	background: var(--black);
+	border-radius: 0 0 0 5px;
+	display: grid;
+	grid-auto-flow: row;
+	grid-gap: 20px;
+	justify-items: end;
+	padding: 20px;
+}
+
+.dropdown--small:hover > .dropdown__content--small {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.dropdown--small:hover > .dropdown__spacer {
+	pointer-events: all;
 }
 
 /* SHOWCASE */
@@ -425,11 +480,14 @@ footer {
 	.nav--big {
 		display: none;
 	}
-	header {
-		justify-content: center;
-		padding: 0;
+	.nav--small {
+		display: inline;
+		grid-auto-flow: row;
 	}
-	header h1 {
+	header {
+		padding: 0 20px;
+	}
+	.brand {
 		margin: 0;
 	}
 }
@@ -453,6 +511,10 @@ footer {
 	}
 
 	header {
+		height: 60px;
+	}
+
+	.dropdown__spacer {
 		height: 60px;
 	}
 
