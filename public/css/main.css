@@ -1,7 +1,9 @@
 /* GLOBALS */
 
 :root {
-  --black: #191c1f;
+	/* --black: #191c1f; */
+	--black: #292e33;
+	--lightblack: hsla(210, 11%, 50%, 1);
   --gold: #c7ac62;
   --silver: #83939a;
   --blue: #3e6a9f;
@@ -28,9 +30,7 @@ body {
 
 header {
   align-items: center;
-  background: var(--ming);
   background: var(--black);
-  border-bottom: 5px solid var(--begonia);
   border-bottom: 5px solid var(--gold);
   display: flex;
   height: 90px;
@@ -39,7 +39,6 @@ header {
 }
 
 header h1 {
-  color: var(--begonia);
   color: var(--offwhite);
   margin-right: 20px;
 }
@@ -99,7 +98,6 @@ nav {
 }
 
 .dropdown__content {
-  /* background: var(--ming); */
   border-top: 1px solid white;
   display: grid;
   grid-auto-flow: row;
@@ -273,7 +271,6 @@ nav {
 } */
 
 .form__group--input {
-  background: hsla(208, 40%, 55%, 1);
   background: hsla(210, 11%, 31%, 1);
   border-radius: 5px;
   box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.15);
@@ -282,8 +279,7 @@ nav {
 .form__input {
   align-items: center;
   /* background: hsla(208, 40%, 55%, 1); */
-  border-bottom: 1px solid hsla(208, 40%, 50%, 1);
-  border-bottom: 1px solid hsla(210, 11%, 38%, 1);
+  border-bottom: 1px solid hsla(210, 11%, 28%, 1);
   color: white;
   display: flex;
   height: 50px;
@@ -309,10 +305,7 @@ nav {
 .form__submit {
   border: none;
   border-radius: 5px;
-  background: var(--begonia);
   background: var(--blue);
-  /* color: rgba(150, 150, 150, 1); */
-  color: hsla(354, 88%, 95%, 1);
   color: var(--offwhite);
   cursor: pointer;
   height: 50px;
@@ -328,7 +321,7 @@ nav {
 }
 
 .auth__form__link {
-  color: hsla(208, 40%, 55%, 1);
+	color: var(--lightblack);
   text-decoration: none;
 }
 
@@ -350,9 +343,7 @@ nav {
 
 footer {
   align-items: center;
-  background: var(--begonia);
   background: var(--gold);
-  color: var(--ming);
   color: var(--black);
   display: flex;
   height: 90px;
