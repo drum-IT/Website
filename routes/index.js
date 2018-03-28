@@ -11,6 +11,10 @@ router.get("/", (req, res) => {
   res.render("landing", { page: "landing" });
 });
 
+router.get("/about", (req, res) => {
+  res.render("about", { page: "about" });
+});
+
 // show the register form
 router.get("/register", (req, res) => {
   res.render("register", { page: "register" });

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/modern-normalize.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
     <title>FuskerBrothers | Welcome</title>
   </head>
@@ -16,20 +17,29 @@
       <h1>
         <span class="brand">FuskerBrothers</span>
       </h1>
-      <nav>
-        <!-- <a href="/">Home</a>
-        <a href="about.html">About</a>
-        <a href="contactus.html">Contact Us</a>
-        <a href="info.html">Projects</a> -->
-        <% if (!user) { %>
-            <a href="/login">Log In</a>
-            <a href="/register">Sign Up</a>
-        <% } else { %>
-            <a href="#">Signed in as <%= user.username %></a>
-            <a href="/logout">Log Out</a>
-        <% } %>
+      <nav class="nav--big">
+        <div class="nav__section">
+          <a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
+          <a class="nav__link <%= page === 'about' ? 'active' : ''%>" href="/about">About</a>
+          <!-- <a class="nav__link" href="contactus.html">Contact Us</a> -->
+          <!-- <a class="nav__link" href="info.html">Projects</a> -->
+        </div>
+        <div class="nav__divider"></div>
+        <div class="nav__section">
+          <% if (!user) { %>
+          <a href="/login" class="nav__link">Sign In</a>
+          <a href="/register" class="nav__link">Sign Up</a>
+          <% } else { %>
+          <div class="dropdown nav__link">
+            Signed in as <%= user.username %>
+            <div class="dropdown__content">
+              <a class="nav__link" href="#">My Profile</a>
+              <a class="nav__link" href="/logout">Sign Out</a>
+            </div>
+          </div>
+          <% } %>
+        </div>
       </nav>
-      </div>
     </header>
 
     <% if (error && error.length > 0) { %>
