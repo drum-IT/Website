@@ -55,6 +55,7 @@
 						<i class="dropdown__icon fas fa-bars"></i>
 						<div class="dropdown__content dropdown__content--small">
 							<div class="dropdown__spacer">
+								
 							</div>
 							<div class="dropdown__content--visible dropdown__content--visible--small">
 								<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
@@ -63,7 +64,7 @@
 								<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
 								<% } %>
 								<div class="dropdown__divider--small">
-	
+									
 								</div>
 								<% if (!user) { %>
 								<a href="/login" class="nav__link <%= page === 'login' ? 'active' : ''%>">Sign In</a>
