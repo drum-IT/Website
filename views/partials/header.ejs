@@ -24,9 +24,6 @@
 					<% } else { %>
 					<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
 					<% } %>
-          <!-- <a class="nav__link <%= page === 'about' ? 'active' : ''%>" href="/about">About</a> -->
-          <!-- <a class="nav__link" href="contactus.html">Contact Us</a> -->
-          <!-- <a class="nav__link" href="info.html">Projects</a> -->
         </div>
         <div class="nav__divider"></div>
         <div class="nav__section">
@@ -36,9 +33,9 @@
           <% } else { %>
           <div class="dropdown--big nav__link dropdown--nav">
             Signed in as <%= user.username %>
-						<div class="dropdown__content--big">
+						<div class="dropdown__content dropdown__content--big">
 							<div class="dropdown__spacer--big"> </div>
-							<div class="dropdown__content--visible--big">
+							<div class="dropdown__content--visible dropdown__content--visible--big">
 								<a class="nav__link" href="#">My Profile</a>
 								<a class="nav__link" href="/reset">Reset Password</a>
 								<a class="nav__link" href="/logout">Sign Out</a>
@@ -52,11 +49,11 @@
 			<nav class="nav--small">
 				<div class="dropdown--small">
 					<i class="dropdown__icon fas fa-bars"></i>
-					<div class="dropdown__content--small">
+					<div class="dropdown__content dropdown__content--small">
 						<div class="dropdown__spacer">
 
 						</div>
-						<div class="dropdown__content--visible">
+						<div class="dropdown__content--visible dropdown__content--visible--small">
 							<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
 							<% if (!user) { %>
 							<% } else { %>
