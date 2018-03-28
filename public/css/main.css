@@ -166,16 +166,7 @@ nav {
 	pointer-events: all;
 }
 
-.dropdown__big:active > .dropdown__content--big {
-	opacity: 1;
-	pointer-events: all;
-}
-
 .dropdown--big:hover > .dropdown__spacer--big {
-	pointer-events: all;
-}
-
-.dropdown__big:active > .dropdown__spacer--big {
 	pointer-events: all;
 }
 
@@ -207,16 +198,12 @@ nav {
 	pointer-events: all;
 }
 
-.dropdown--small:active > .dropdown__content--small {
-	opacity: 1;
-	pointer-events: all;
-}
-
 .dropdown--small:hover > .dropdown__spacer {
 	pointer-events: all;
 }
 
-.dropdown--small:active > .dropdown__spacer {
+.dropdown__show {
+	opacity: 1;
 	pointer-events: all;
 }
 
