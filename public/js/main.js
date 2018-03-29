@@ -26,6 +26,8 @@ if (dropdownBig) {
 if (dropdownSmall) {
 	dropdownSmall.addEventListener("click", ev => {
 		const smallContent = document.getElementById("dropdown__content--small");
+		const dropDownIcon = document.querySelector(".dropdown__icon");
 		smallContent.classList.toggle("dropdown__show");
+		dropDownIcon.classList.toggle("dropdown__icon--clicked");
 	});
 }

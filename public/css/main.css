@@ -38,7 +38,12 @@ header {
 }
 
 .brand {
+	align-items: center;
 	color: var(--offwhite);
+	display: flex;
+	font-weight: 600;
+	font-size: 1.75rem;
+	height: 100%;
 	margin-right: 20px;
 	text-decoration: none;
 }
@@ -121,11 +126,18 @@ nav {
 .dropdown__content {
 	min-width: 200px;
 	z-index: 100;
+	transition: all 100ms;
 }
 
 .dropdown__icon {
 	color: var(--offwhite);
-	font-size: 2rem;
+	font-size: 1.5rem;
+	transition: all 100ms;
+}
+
+.dropdown__icon--clicked {
+	transform: rotateZ(90deg);
+	transition: transform 100ms;
 }
 
 .dropdown__link {
@@ -480,6 +492,7 @@ footer {
 		padding: 0 20px;
 	}
 	.brand {
+		font-size: 1.5rem;
 		margin: 0;
 	}
 }
