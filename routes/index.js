@@ -36,38 +36,6 @@ router.get("/forgot", (req, res) => {
 	res.render("forgot", { page: "forogot " });
 });
 
-router.get("/reset", (req, res) => {
-	if (!req.user) {
-		req.flash("error", "You must be logged into do that.");
-		return res.redirect("back");
-	}
-	crypto.randomBytes(20, (err, buf) => {
-		const token = buf.toString("hex");
-		User.findOne({ email: req.user.email }, (err, user) => {
-			if (err) {
-				req.flash("error", "An error occurred while finding the user.");
-				res.redirect("back");
-			} else if (!user) {
-				req.flash(
-					"error",
-					"A user with that email address could not be found."
-				);
-				res.redirect("back");
-			} else {
-				user.resetPasswordToken = token;
-				user.resetPasswordExpires = Date.now() + 3600000;
-				user.save(err => {
-					// res.redirect(`/reset/${token}`);
-					res.render("reset", {
-						page: "reset",
-						token: token
-					});
-				});
-			}
-		});
-	});
-});
-
 router.get("/reset/:token", (req, res) => {
 	User.findOne(
 		{

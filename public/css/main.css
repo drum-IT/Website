@@ -444,53 +444,7 @@ footer {
 	justify-content: center;
 }
 
-@media (max-width: 905px) {
-	.callout--page {
-		align-items: center;
-		color: white;
-		display: flex;
-		flex-direction: column;
-		height: 180px;
-		justify-content: space-between;
-		padding: 20px 20px;
-	}
-	.callout__title {
-		margin: 0;
-		width: 90%;
-		text-align: center;
-	}
-	.callout__form {
-		grid-template-columns: 1fr 100px;
-	}
-}
-
-/* @media (max-width: 800px) {
-	.showcase {
-		height: calc(100% - 90px - 180px);
-	}
-
-	.showcase--single {
-		height: calc(100% - 140px);
-		min-height: 550px;
-	}
-} */
-
-@media (max-width: 700px) {
-	.nav--big {
-		display: none;
-	}
-	.nav--small {
-		display: inline;
-		grid-auto-flow: row;
-	}
-	header {
-		padding: 0 20px;
-	}
-	.brand {
-		font-size: 1.5rem;
-		margin: 0;
-	}
-
+@media (max-height: 600px) {
 	.showcase {
 		height: calc(100% - 50px - 180px);
 	}
@@ -516,14 +470,58 @@ footer {
 	}
 }
 
-@media (max-height: 600px) {
-	.showcase {
-		height: calc(100% - 50px - 180px);
-		/* min-height: 250px; */
+@media (max-width: 905px) {
+	.callout--page {
+		align-items: center;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		height: 180px;
+		justify-content: space-between;
+		padding: 20px 20px;
+	}
+	.callout__title {
+		margin: 0;
+		width: 90%;
+		text-align: center;
+	}
+	.callout__form {
+		grid-template-columns: 1fr 100px;
+	}
+}
+
+@media (max-width: 700px) {
+	html, body {
+		font-size: 14px;
+	}
+	.nav--big {
+		display: none;
+	}
+	.nav--small {
+		display: inline;
+		grid-auto-flow: row;
+	}
+	header {
+		box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+		height: 50px;
+		padding: 0 20px;
+		position: fixed;
+		width: 100%;
+		top: 0;
+	}
+	.brand {
+		font-size: 1.5rem;
+		margin: 0;
 	}
 
-	header {
-		height: 50px;
+	.showcase {
+		box-shadow: none;
+		margin-top: 50px;
+		height: calc(100% - 50px - 150px);
+	}
+
+	.showcase--single {
+		height: calc(100% - 50px - 90px);
 	}
 
 	.dropdown__spacer {
@@ -537,7 +535,12 @@ footer {
 	.nav__divider {
 		height: 30px;
 	}
+	.callout--page {
+		height: 150px;
+	}
 }
+
+
 
 @media screen and (min-width: 1200px) {
   .showcase__title {
