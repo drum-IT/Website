@@ -8,12 +8,10 @@ const postSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User"
 	},
-	replies: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Reply"
-		}
-	]
+	forum: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Forum"
+	}
 });
 
 module.exports = mongoose.model("Post", postSchema);

@@ -5,7 +5,8 @@
       <h1 class="auth__form--title">Forgot Password</h1>
       <div class="form__group form__group--input">
         <div class="form__input form__input--bottom">
-          <i class="fas fa-envelope input__icon"></i>
+					<i class="fas fa-envelope input__icon"></i>
+					<input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input class="text__input" type="email" id="email" name="email" placeholder="email address" value="<%= !user ? '' : user.email %>" autofocus>
         </div>
       </div>

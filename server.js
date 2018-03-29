@@ -56,6 +56,8 @@ app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/forum", forumRouter);
 
+
+
 // start the server
 app.listen(process.env.PORT || 5000, process.env.IP, () => {
 	console.log("Express Server has Started!");

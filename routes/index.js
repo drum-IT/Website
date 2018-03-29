@@ -5,13 +5,14 @@ const User = require("../models/user");
 const nodemailer = require("nodemailer");
 const async = require("async");
 const crypto = require("crypto");
+const middleware = require("../middleware");
 
 // GET ROUTES
 router.get("/", (req, res) => {
 	res.render("landing", { page: "landing" });
 });
 
-router.get("/about", (req, res) => {
+router.get("/about", middleware.isLoggedIn, (req, res) => {
 	res.render("about", { page: "about" });
 });
 
@@ -32,8 +33,8 @@ router.get("/logout", (req, res) => {
 	res.redirect("/");
 });
 
-router.get("/forgot", (req, res) => {
-	res.render("forgot", { page: "forogot " });
+router.get("/forgot", middleware.csrf,  (req, res) => {
+	res.render("forgot", { page: "forgot", csrfToken: req.csrfToken() });
 });
 
 router.get("/reset/:token", (req, res) => {
@@ -106,7 +107,7 @@ router.post(
 	}
 );
 
-router.post("/forgot", async (req, res) => {
+router.post("/forgot", middleware.csrf, async (req, res) => {
 	async.waterfall(
 		[
 			done => {
@@ -147,7 +148,17 @@ router.post("/forgot", async (req, res) => {
 					to: user.email,
 					from: process.env.GMAIL_USER,
 					subject: "FuskerBrothers Password Reset Request",
-					text: `https://${req.headers.host}/reset/${token}`
+					// text: `${process.env.HEADER}${req.headers.host}/reset/${token}`
+					html:
+						`<header style="background: #292e33;border-bottom: 5px solid #c7ac62;height: 90px;"></header>` +
+						`<div class="content" style="align-items: center;display: flex;flex-direction: column;height: calc(100% - 180px);min-height: 300px;justify-content: center;">` +
+							`<div class="content--main" style="display: flex;flex-direction: column;padding: 20px;">` +
+								`<h2 style="margin: 0;margin-bottom: 30px;">FuskerBrothers Password Reset Request</h2>` +
+								`<p>Hi ${user.username},</p>` +
+								`<p>A password reset has been requested for your account.</p>` +
+								`<a class="reset__button" href="${process.env.HEADER}${req.headers.host}/reset/${token}" style="align-items: center;align-self: end;background: #3e6a9f;border-radius: 5px;color: #f7f7f7;display: flex;height: 50px;justify-content: center;margin-top: 50px;width: 100%;text-decoration: none;">Reset Password</a>` +
+							`</div>` +
+						`</div>`
 				};
 				smtpTransport.sendMail(mailOptions, err => {
 					req.flash(
@@ -213,7 +224,15 @@ router.post("/reset/:token", (req, res) => {
 					to: user.email,
 					from: process.env.GMAIL_USER,
 					subject: "FuskerBrothers Password Reset Confirmation",
-					text: `FuskerBrothers password for ${user.email} has been changed.`
+					html:
+						`<header style="background: #292e33;border-bottom: 5px solid #c7ac62;height: 90px;"></header>` +
+						`<div class="content" style="align-items: center;display: flex;flex-direction: column;height: calc(100% - 180px);min-height: 300px;justify-content: center;">` +
+							`<div class="content--main" style="display: flex;flex-direction: column;padding: 20px;">` +
+								`<h2 style="margin: 0;margin-bottom: 30px;">FuskerBrothers Password Reset Confirmation</h2>` +
+								`<p>Hi ${user.username},</p>` +
+								`<p>The password for your account has been changed.</p>` +
+							`</div>` +
+						`</div>`
 				};
 				smtpTransport.sendMail(mailOptions, err => {
 					req.flash("success", "Your password has been reset!");
