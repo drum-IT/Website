@@ -1,11 +1,20 @@
 const alert = document.getElementById("alert");
 const dropdownSmall = document.getElementById("dropdown--small");
 const dropdownBig = document.getElementById("dropdown--big");
+const showcase = document.querySelector(".showcase");
 if (alert) {
 	setTimeout(() => {
 		alert.classList.add("alert--hidden");
 	}, 2000);
 }
+
+setTimeout(() => {
+	if (showcase) {
+		const height = showcase.firstElementChild.clientHeight;
+		console.log(height);
+		showcase.setAttribute("style", `min-height: ${height + 40}px`);
+	}
+}, 10);
 
 if (dropdownBig) {
 	dropdownBig.addEventListener("click", ev => {
