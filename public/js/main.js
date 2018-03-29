@@ -19,7 +19,7 @@ function setShowcaseHeight() {
 			console.log(height);
 			showcase.setAttribute("style", `min-height: ${height + 40}px`);
 		}
-	}, 50);
+	}, 1);
 }
 
 function dropDownEvents() {

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const forumSchema = new mongoose.Schema({
+const topicSchema = new mongoose.Schema({
 	title: String,
 	description: String,
 	createdAt: { type: Date, default: Date.now },
@@ -11,13 +11,7 @@ const forumSchema = new mongoose.Schema({
 		},
 		username: String
 	},
-	topic: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "Topic"
-	},
-	posts: Number,
-	replies: Number,
-	lastPost: Date
+	forums: Array
 });
 
-module.exports = mongoose.model("Forum", forumSchema);
+module.exports = mongoose.model("Topic", topicSchema);

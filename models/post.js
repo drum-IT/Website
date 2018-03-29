@@ -5,8 +5,15 @@ const postSchema = new mongoose.Schema({
 	content: String,
 	createdAt: { type: Date, default: Date.now },
 	author: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		},
+		username: String
+	},
+	topic: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "User"
+		ref: "Topic"
 	},
 	forum: {
 		type: mongoose.Schema.Types.ObjectId,

@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/modern-normalize.css">
-		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet"> -->
 		<link rel="stylesheet" href="/css/main.css">
 		<title>FuskerBrothers | Welcome</title>
-		<script src="/js/main.js" async defer></script>
+		<script src="/js/main.js" defer></script>
   </head>
 
   <body>
@@ -20,7 +20,7 @@
 					<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
 					<% if (!user) { %>
 					<% } else { %>
-					<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
+					<a href="/forums" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
 					<% } %>
         </div>
         <div class="nav__divider"></div>
@@ -57,7 +57,7 @@
 							<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
 							<% if (!user) { %>
 							<% } else { %>
-							<a href="/forum" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
+							<a href="/forums" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
 							<% } %>
 							<div class="dropdown__divider--small">
 								

@@ -1,12 +1,41 @@
 <% include ../partials/header %>
 <section class="showcase showcase--single showcase--content">
 	<div class="forum__list">
+
+		<div class="list__controls">
+			<a class="list__control" href="/topics/new">New Topic</a>
+			<a class="list__control" href="/forums/new">New Forum</a>
+		</div>
+
+		<% topics.forEach(topic => { %>
 		<div class="forum__section">
 			<div class="forum__section__header">
-				<h2>Forum Section</h2>
-				<h4 class="forum__section__header__label">Posts</h4>
-				<h4 class="forum__section__header__label">Replies</h4>
-				<h4 class="forum__section__header__label">Last Post</h4>
+				<h2 class="forum__section__title"><%= topic.title %></h2>
+				<p class="forum__section__header__label">Posts</p>
+				<p class="forum__section__header__label">Replies</p>
+				<p class="forum__section__header__label">Last Post</p>
+			</div>
+
+			<% topic.forums.forEach(forum => { %>
+			<div class="forum forum--single">
+				<a class="forum__title" href="/forums/<%= forum._id %>"><%= forum.title %></a>
+				<h3 class="forum__feature">
+					created by <%= forum.author.username %> <%= moment(forum.createdAt).fromNow() %>
+				</h3>
+				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
+				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
+				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
+			</div>
+			<% }); %>
+		</div>
+		<% }); %>
+
+		<!-- <div class="forum__section">
+			<div class="forum__section__header">
+				<h2 class="forum__section__title">Forum Section</h2>
+				<p class="forum__section__header__label">Posts</p>
+				<p class="forum__section__header__label">Replies</p>
+				<p class="forum__section__header__label">Last Post</p>
 			</div>
 			<div class="forum forum--single">
 				<h2 class="forum__title">Forum Title</h2>
@@ -16,9 +45,13 @@
 				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
 			</div>
 		</div>
+
 		<div class="forum__section">
 			<div class="forum__section__header">
-				<h2>Forum Section</h2>
+				<h2 class="forum__section__title">Forum Section</h2>
+				<p class="forum__section__header__label">Posts</p>
+				<p class="forum__section__header__label">Replies</p>
+				<p class="forum__section__header__label">Last Post</p>
 			</div>
 			<div class="forum forum--top">
 				<h2 class="forum__title">Forum Title</h2>
@@ -38,16 +71,12 @@
 
 		<div class="forum__section">
 			<div class="forum__section__header">
-				<h2>Forum Section</h2>
+				<h2 class="forum__section__title">Forum Section</h2>
+				<p class="forum__section__header__label">Posts</p>
+				<p class="forum__section__header__label">Replies</p>
+				<p class="forum__section__header__label">Last Post</p>
 			</div>
 			<div class="forum forum--top">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-			<div class="forum">
 				<h2 class="forum__title">Forum Title</h2>
 				<h3 class="forum__feature">Forum Feature</h3>
 				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
@@ -68,7 +97,8 @@
 				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
 				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
 			</div>
-		</div>
+		</div> -->
+
 	</div>
 </section>
 
