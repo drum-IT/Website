@@ -137,7 +137,7 @@ nav {
 
 .dropdown__icon--clicked {
 	transform: rotateZ(90deg);
-	transition: transform 100ms;
+	transition: all 100ms;
 }
 
 .dropdown__link {
