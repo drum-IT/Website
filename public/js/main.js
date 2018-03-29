@@ -4,8 +4,11 @@ const dropdownBig = document.getElementById("dropdown--big");
 const showcase = document.querySelector(".showcase");
 if (alert) {
 	setTimeout(() => {
-		alert.classList.add("alert--hidden");
-	}, 2000);
+		alert.classList.add("alert--show");
+	}, 100);
+	setTimeout(() => {
+		alert.classList.remove("alert--show");
+	}, 3000);
 }
 
 setTimeout(() => {
