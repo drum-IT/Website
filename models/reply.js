@@ -7,6 +7,10 @@ const replySchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User"
 	},
+	forum: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Forum"
+	},
 	post: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Post"

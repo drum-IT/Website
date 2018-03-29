@@ -223,6 +223,10 @@ nav {
 	height: calc(100% - 180px);
 }
 
+.showcase--content {
+	align-items: flex-start;
+}
+
 .showcase__title {
 	font-size: 6.5vw;
 	margin: 0;
@@ -431,7 +435,94 @@ nav {
 
 /* FORUMS */
 
+.forum__list, .post__list {
+	margin: 15px 0;
+	width: 90%;
+}
 
+.forum__section, .post__section {
+	display: grid;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.forum, .post {
+	align-items: center;
+	background: var(--black);
+	border-bottom: 1px solid var(--lightblack);
+	
+	color: var(--offwhite);
+	display: grid;
+	grid-template-areas:
+		"title stat1 stat2 stat3"
+		"feature stat1 stat2 stat3";
+	grid-template-columns: auto repeat(3, 70px);
+	grid-template-rows: 1fr 1fr;
+	height: 100px;
+	width: 100%;
+}
+
+.post {
+	grid-template-areas:
+		"title stat1 stat2"
+		"feature stat1 stat2";
+	grid-template-columns: auto repeat(2, 70px);
+}
+
+.forum__section__header, .post__section__header {
+	align-items: center;
+	display: grid;
+	grid-template-columns: auto repeat(3, 70px);
+}
+
+.post__section__header {
+	align-items: center;
+	display: grid;
+	grid-template-columns: auto repeat(2, 70px);
+}
+
+.forum__section__header__label, .post__section__header__label {
+	justify-self: center;
+}
+
+.forum--single, .post--single {
+	border-radius: 5px;
+}
+
+.forum--top, .post--top {
+	border-radius: 5px 5px 0 0;
+}
+
+.forum--bottom, .post--bottom {
+	border: none;
+	border-radius: 0 0 5px 5px;
+}
+
+.forum__title, .post__title {
+	margin: 0 0 0 10px;
+}
+
+.forum__feature, .post__author {
+	grid-area: feature;
+	margin: 0 0 0 10px;
+}
+
+.forum__stat, .post__stat {
+	align-self: center;
+	justify-self: center;
+}
+
+.forum__stat--1, .post__stat--1 {
+	grid-area: stat1;
+}
+
+.forum__stat--2, .post__stat--2 {
+	grid-area: stat2;
+}
+
+.forum__stat--3 {
+	grid-area: stat3;
+}
 
 /* FOOTER */
 
@@ -505,7 +596,7 @@ footer {
 		box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
 		height: 50px;
 		padding: 0 20px;
-		position: fixed;
+		/* position: fixed; */
 		width: 100%;
 		top: 0;
 	}
@@ -516,7 +607,7 @@ footer {
 
 	.showcase {
 		box-shadow: none;
-		margin-top: 50px;
+		/* margin-top: 50px; */
 		height: calc(100% - 50px - 150px);
 	}
 

@@ -7,4 +7,8 @@ forumRouter.get("/", (req, res) => {
 	res.render("forums/index", { page: "forum" });
 });
 
+forumRouter.get("/:forum_id", (req, res) => {
+	res.render("forums/show", { page: "forum" });
+});
+
 module.exports = forumRouter;
