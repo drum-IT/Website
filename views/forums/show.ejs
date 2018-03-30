@@ -4,7 +4,11 @@
 
 		<div class="list__controls">
 			<a class="list__control" href="/forums">Forum Index</a>
+			<% if (!user) { %>
+			<a class="list__control" href="/login">Log In to Post</a>
+			<% } else { %>
 			<a class="list__control" href="/posts/new/<%= forum.id %>">New Post</a>
+			<% } %>
 		</div>
 
 		<div class="post__section">

@@ -5,7 +5,7 @@ const Topic = require("../models/topic");
 const middleware = require("../middleware");
 const Post = require("../models/post");
 
-forumRouter.get("/", middleware.isLoggedIn, (req, res) => {
+forumRouter.get("/", (req, res) => {
 	Topic.find({})
 		.populate("forums")
 		.exec((err, foundTopics) => {
@@ -23,7 +23,7 @@ forumRouter.get("/new/:topic_id", middleware.isLoggedIn, (req, res) => {
 	});
 });
 
-forumRouter.get("/:forum_id", middleware.isLoggedIn, (req, res) => {
+forumRouter.get("/:forum_id", (req, res) => {
 	Forum.findById(req.params.forum_id).populate("posts").exec((err, foundForum) => {
 		if (err) {
 			req.flash("error", "There was an error finding the forum.");

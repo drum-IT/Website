@@ -18,10 +18,7 @@
       <nav class="nav--big">
         <div class="nav__section">
 					<a class="nav__link <%= page === 'landing' ? 'active' : ''%>" href="/">Home</a>
-					<% if (!user) { %>
-					<% } else { %>
 					<a href="/forums" class="nav__link <%= page === 'forum' ? 'active' : ''%>">Forum</a>
-					<% } %>
         </div>
         <div class="nav__divider"></div>
         <div class="nav__section">

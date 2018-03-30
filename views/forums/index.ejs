@@ -3,8 +3,10 @@
 	<div class="forum__list">
 
 		<div class="list__controls">
-			<% if (user.isAdmin) { %>
-				<a class="list__control" href="/topics/new">New Topic</a>
+			<% if (!user) { %>
+			<a class="list__control" href="/login">Log In to Post</a>
+			<% } else if (user.isAdmin) { %>
+			<a class="list__control" href="/topics/new">New Topic</a>
 			<% } %>
 		</div>
 
@@ -15,7 +17,9 @@
 					<h2>
 						<%= topic.title %>
 					</h2>
-					<% if (user.isAdmin) { %>
+					<% if (!user) { %>
+
+					<% } else if (user.isAdmin) { %>
 					<a class="list__control" href="/forums/new/<%= topic.id %>">New Forum</a>
 					<% } %>
 				</div>
