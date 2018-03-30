@@ -3,7 +3,8 @@
 	<div class="post__list">
 
 		<div class="list__controls">
-			<a class="list__control" href="/posts/new">New Post</a>
+			<a class="list__control" href="/forums">Forum Index</a>
+			<a class="list__control" href="/posts/new/<%= forum.id %>">New Post</a>
 		</div>
 
 		<div class="post__section">
@@ -12,17 +13,19 @@
 				<p class="post__section__header__label">Replies</p>
 				<p class="post__section__header__label">Last Reply</p>
 			</div>
-			<% posts.forEach((post, i) => { %>
-			<% if (i === posts.length - 1 && i === 0) { %>
+			<% forum.posts.forEach((post, i) => { %>
+			<% if (i === forum.posts.length - 1 && i === 0) { %>
 			<div class="post post--single">
 			<% } else if (i === 0) { %>
 			<div class="post post--top">
-			<% } else if (i === posts.length - 1) { %>
+			<% } else if (i === forum.posts.length - 1) { %>
 			<div class="post post--bottom">
 			<% } else { %>
 			<div class="post">
 			<% } %>
-				<h2 class="post__title"><%= post.title %></h2>
+				<a class="post__title" href="/posts/<%= post.id %>">
+					<%= post.title %>
+				</a>
 				<h3 class="post__author">created by
 					<%= post.author.username %>
 					<%= moment(post.createdAt).fromNow() %></h3>
@@ -31,52 +34,6 @@
 			</div>
 			<% }); %>
 		</div>
-
-		<!-- <div class="post__section">
-			<div class="post__section__header">
-				<h2>Post Section</h2>
-				<p class="post__section__header__label">Replies</p>
-				<p class="post__section__header__label">Last Reply</p>
-			</div>
-			<div class="post post--top">
-				<h2 class="post__title">Post Title</h2>
-				<h3 class="post__author">Post Author</h3>
-				<h3 class="post__stat post__stat--1">Stat 1</h3>
-				<h3 class="post__stat post__stat--2">Stat 2</h3>
-			</div>
-			<div class="post post--bottom">
-				<h2 class="post__title">Post Title</h2>
-				<h3 class="post__author">Post Author</h3>
-				<h3 class="post__stat post__stat--1">Stat 1</h3>
-				<h3 class="post__stat post__stat--2">Stat 2</h3>
-			</div>
-		</div>
-
-		<div class="post__section">
-			<div class="post__section__header">
-				<h2>Post Section</h2>
-				<p class="post__section__header__label">Replies</p>
-				<p class="post__section__header__label">Last Reply</p>
-			</div>
-			<div class="post post--top">
-				<h2 class="post__title">Post Title</h2>
-				<h3 class="post__author">Post Author</h3>
-				<h3 class="post__stat post__stat--1">Stat 1</h3>
-				<h3 class="post__stat post__stat--2">Stat 2</h3>
-			</div>
-			<div class="post">
-				<h2 class="post__title">Post Title</h2>
-				<h3 class="post__author">Post Author</h3>
-				<h3 class="post__stat post__stat--1">Stat 1</h3>
-				<h3 class="post__stat post__stat--2">Stat 2</h3>
-			</div>
-			<div class="post post--bottom">
-				<h2 class="post__title">Post Title</h2>
-				<h3 class="post__author">Post Author</h3>
-				<h3 class="post__stat post__stat--1">Stat 1</h3>
-				<h3 class="post__stat post__stat--2">Stat 2</h3>
-			</div>
-		</div> -->
 
 	</div>
 </section>

@@ -1,16 +1,16 @@
 <% include ../partials/header %>
 <section class="showcase showcase--single">
 	<div class="form__container">
-		<form class="auth__form" action="/forums" method="POST">
+		<form class="auth__form" action="/forums/<%= topicId %>" method="POST">
 			<h1 class="auth__form--title">New Forum</h1>
 			<div class="form__group form__group--input">
 				<div class="form__input form__input--top">
 					<i class="fas fa-chevron-right input__icon"></i>
-					<input class="text__input" name="title" placeholder="Forum Name" type="text" autofocus autocomplete="false">
+					<input class="text__input" name="forum[title]" placeholder="Forum Name" type="text" autofocus autocomplete="false">
 				</div>
 				<div class="form__input form__input--large form__input--bottom">
 					<i class="fas fa-chevron-right input__icon"></i>
-					<textarea class="text__input--large" name="description" autocomplete="false"></textarea>
+					<textarea class="text__input--large" name="forum[description]" autocomplete="false"></textarea>
 				</div>
 			</div>
 			<input class="form__submit" type="submit" value="Create">

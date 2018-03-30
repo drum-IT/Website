@@ -15,7 +15,12 @@ const forumSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Topic"
 	},
-	posts: Number,
+	posts: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Post"
+		}
+	],
 	replies: Number,
 	lastPost: Date
 });

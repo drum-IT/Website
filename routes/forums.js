@@ -6,69 +6,58 @@ const middleware = require("../middleware");
 const Post = require("../models/post");
 
 forumRouter.get("/", middleware.isLoggedIn, (req, res) => {
-  Topic.find({}, (err, foundTopics) => {
-    if (err) {
-      req.flash("error", "There was an error finding the topics.");
-      return res.redirect("back");
-    }
-    Forum.find({}, (err, foundForums) => {
-      if (err) {
-        req.flash("error", "there was an error finding forums.");
-        return res.redirect("back");
-      }
-      res.render("forums/index", {
-        page: "forum",
-        topics: foundTopics,
-        forums: foundForums
-      });
-    });
-  });
+	Topic.find({})
+		.populate("forums")
+		.exec((err, foundTopics) => {
+			res.render("forums/index", { page: "forum", topics: foundTopics });
+		});
 });
 
-forumRouter.get("/new", middleware.isLoggedIn, (req, res) => {
-  res.render("forums/new", { page: "forum" });
+forumRouter.get("/new/:topic_id", middleware.isLoggedIn, (req, res) => {
+	Topic.findById(req.params.topic_id, (err, foundTopic) => {
+		if (!foundTopic) {
+			req.flash("error", "No topic with that ID was found.");
+			return res.redirect("/forums");
+		}
+		res.render("forums/new", { page: "forum", topicId: req.params.topic_id });
+	});
 });
 
 forumRouter.get("/:forum_id", middleware.isLoggedIn, (req, res) => {
-  Forum.findById(req.params.forum_id, (err, foundForum) => {
-    if (err) {
-      req.flash("error", "There was an error finding the forum.");
-      return res.redirect("back");
-    }
-    Post.find()
-      .where("forum")
-      .equals(foundForum._id)
-      .exec((err, foundPosts) => {
-        if (err) {
-          req.flash("error", "there was an error finding posts.");
-          return res.redirect("back");
-        }
-        res.render("forums/show", {
-          page: "forum",
-          forum: foundForum,
-          posts: foundPosts
-        });
-      });
-  });
+	Forum.findById(req.params.forum_id).populate("posts").exec((err, foundForum) => {
+		if (err) {
+			req.flash("error", "There was an error finding the forum.");
+			return res.redirect("/forums");
+		}
+		res.render("forums/show", { page: "forum", forum: foundForum });
+	})
 });
 
-forumRouter.post("/", middleware.isLoggedIn, (req, res) => {
-  Topic.find({}, (err, foundTopics) => {
-    const newForum = {
-      title: req.body.title,
-      description: req.body.description,
-      author: { id: req.user.id, username: req.user.username },
-      topic: foundTopics[0].id
-    };
-    Forum.create(newForum, (err, createdForum) => {
-      if (err) {
-        req.flash("error", "There was an error creating the forum.");
-        return res.redirect("back");
-      }
-      console.log(createdForum);
-      res.redirect(`/forums`);
-    });
-  });
+forumRouter.post("/:topic_id", middleware.isLoggedIn, (req, res) => {
+	Topic.findById(req.params.topic_id, (err, foundTopic) => {
+		if (err) {
+			req.flash("error", "There was an error finding the topic.");
+			return res.redirect("/forums");
+		}
+		req.body.forum.author = {
+			id: req.user.id,
+			username: req.user.username
+		};
+		Forum.create(req.body.forum, (err, createdForum) => {
+			if (err) {
+				req.flash("error", "There was an error creating the forum.");
+				return res.redirect("/forums");
+			}
+			foundTopic.forums.push(createdForum.id);
+			foundTopic.save((err, savedTopic) => {
+				if (err) {
+					req.flash("error", "There was an error saving the topic.");
+					return res.redirect("/forums");
+				}
+				res.redirect("/forums");
+			});
+		});
+	});
 });
 
 module.exports = forumRouter;

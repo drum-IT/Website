@@ -220,6 +220,7 @@ nav {
 	flex-grow: 1;
 	justify-content: center;
 	text-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
 }
 
 .showcase > div {
@@ -385,7 +386,7 @@ nav {
 .form__input--large {
 	align-items: flex-start;
 	height: 200px;
-	padding-top: 15px;
+	padding: 15px 0;
 }
 
 .input__icon {
@@ -411,6 +412,7 @@ nav {
 	color: var(--offwhite);
 	outline: none;
 	resize: none;
+	height: calc(100%);
 	width: calc(100% - 63px);
 }
 
@@ -461,21 +463,23 @@ nav {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	margin: 15px 0;
+	/* margin: 15px 0; */
 	width: 90%;
 }
 
 .list__controls {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	width: 100%;
 	max-width: 700px;
 }
 
 .list__control {
+	align-self: center;
 	background: var(--blue);
 	border-radius: 5px;
 	color: var(--offwhite);
-	/* font-size: .75rem; */
+	font-size: .75rem;
+	font-weight: 300;
 	padding: 8px;
 	text-decoration: none;
 }
@@ -511,7 +515,7 @@ nav {
 }
 
 .forum__section__header, .post__section__header {
-	align-items: center;
+	/* align-items: center; */
 	display: grid;
 	grid-template-columns: auto repeat(3, 60px);
 }
@@ -519,6 +523,15 @@ nav {
 .post__section__header {
 	display: grid;
 	grid-template-columns: auto repeat(2, 60px);
+}
+
+.forum__section__title {
+	align-items: center;
+	display: grid;
+	grid-gap: 10px;
+	grid-auto-flow: column;
+	grid-template-columns: auto 1fr;
+	justify-items: start;
 }
 
 .forum__section__header__label, .post__section__header__label {
@@ -569,8 +582,10 @@ nav {
 	align-self: center;
 	color: hsla(210, 11%, 75%, 1);
 	font-weight: 300;
-	font-size: .85rem;
+	font-size: .75rem;
 	justify-self: center;
+	padding: 5px;
+	text-align: center;
 }
 
 .forum__stat--1, .post__stat--1 {

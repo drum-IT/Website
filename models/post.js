@@ -18,7 +18,13 @@ const postSchema = new mongoose.Schema({
 	forum: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Forum"
-	}
+	},
+	replies: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Reply"
+		}
+	]
 });
 
 module.exports = mongoose.model("Post", postSchema);

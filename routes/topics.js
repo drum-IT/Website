@@ -21,7 +21,6 @@ topicRouter.post("/", middleware.isLoggedIn, (req, res) => {
 			req.flash("error", "There was an error creating the topic.");
 			return res.redirect("back");
 		}
-		console.log(createdTopic);
 		res.redirect("/forums");
 	});
 });

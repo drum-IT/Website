@@ -6,39 +6,41 @@
 			<% if (user.isAdmin) { %>
 				<a class="list__control" href="/topics/new">New Topic</a>
 			<% } %>
-			<% if (!topics) { %>
-
-			<% } else if (topics.length > 0 && user.isAdmin) { %>
-				<a class="list__control" href="/forums/new">New Forum</a>
-			<% } %>
 		</div>
 
 		<% topics.forEach(topic => { %>
 		<div class="forum__section">
 			<div class="forum__section__header">
-				<h2 class="forum__section__title"><%= topic.title %></h2>
+				<div class="forum__section__title">
+					<h2>
+						<%= topic.title %>
+					</h2>
+					<% if (user.isAdmin) { %>
+					<a class="list__control" href="/forums/new/<%= topic.id %>">New Forum</a>
+					<% } %>
+				</div>
 				<p class="forum__section__header__label">Posts</p>
 				<p class="forum__section__header__label">Replies</p>
 				<p class="forum__section__header__label">Last Post</p>
 			</div>
 
-			<% forums.forEach((forum, i) => { %>
-			<% if (i === forums.length - 1 && i === 0) { %>
-				<div class="forum forum--single">
+			<% topic.forums.forEach((forum, i) => { %>
+			<% if (i === topic.forums.length - 1 && i === 0) { %>
+			<div class="forum forum--single">
 			<% } else if (i === 0) { %>
-				<div class="forum forum--top">
-			<% } else if (i === forums.length - 1) { %>
-				<div class="forum forum--bottom">
+			<div class="forum forum--top">
+			<% } else if (i === topic.forums.length - 1) { %>
+			<div class="forum forum--bottom">
 			<% } else { %>
-				<div class="forum">
+			<div class="forum">
 			<% } %>
-				<a class="forum__title" href="/forums/<%= forum._id %>"><%= forum.title %></a>
+				<a class="forum__title" href="/forums/<%= forum.id %>"><%= forum.title %></a>
 				<h3 class="forum__feature">
 					created by <%= forum.author.username %> <%= moment(forum.createdAt).fromNow() %>
 				</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
+				<h3 class="forum__stat forum__stat--1"><%= forum.posts.length %></h3>
+				<h3 class="forum__stat forum__stat--2"><%= forum.replies || 0 %></h3>
+				<h3 class="forum__stat forum__stat--3"><%= forum.lastPost ? moment(forum.lastPost).fromNow() : 'Never' %></h3>
 			</div>
 			<% }); %>
 		</div>

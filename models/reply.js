@@ -25,7 +25,13 @@ const replySchema = new mongoose.Schema({
 	reply: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Reply"
-	}
+	},
+	replies: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Reply"
+		}
+	]
 });
 
 module.exports = mongoose.model("Post", replySchema);

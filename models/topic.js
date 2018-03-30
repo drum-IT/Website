@@ -11,7 +11,12 @@ const topicSchema = new mongoose.Schema({
 		},
 		username: String
 	},
-	forums: Array
+	forums: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Forum"
+		}
+	]
 });
 
 module.exports = mongoose.model("Topic", topicSchema);
