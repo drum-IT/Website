@@ -18,6 +18,10 @@ postRouter.get("/new/:forum_id", middleware.isLoggedIn, (req, res) => {
 	});
 });
 
+postRouter.get("/:post_id", (req, res) => {
+	res.send("This route will show a post.");
+})
+
 postRouter.post("/:forum_id", middleware.isLoggedIn, (req, res) => {
 	Forum.findById(req.params.forum_id, (err, foundForum) => {
 		if (err) {
