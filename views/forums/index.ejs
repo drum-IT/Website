@@ -3,8 +3,14 @@
 	<div class="forum__list">
 
 		<div class="list__controls">
-			<a class="list__control" href="/topics/new">New Topic</a>
-			<a class="list__control" href="/forums/new">New Forum</a>
+			<% if (user.isAdmin) { %>
+				<a class="list__control" href="/topics/new">New Topic</a>
+			<% } %>
+			<% if (!topics) { %>
+
+			<% } else if (topics.length > 0 && user.isAdmin) { %>
+				<a class="list__control" href="/forums/new">New Forum</a>
+			<% } %>
 		</div>
 
 		<% topics.forEach(topic => { %>
@@ -16,8 +22,16 @@
 				<p class="forum__section__header__label">Last Post</p>
 			</div>
 
-			<% topic.forums.forEach(forum => { %>
-			<div class="forum forum--single">
+			<% forums.forEach((forum, i) => { %>
+			<% if (i === forums.length - 1 && i === 0) { %>
+				<div class="forum forum--single">
+			<% } else if (i === 0) { %>
+				<div class="forum forum--top">
+			<% } else if (i === forums.length - 1) { %>
+				<div class="forum forum--bottom">
+			<% } else { %>
+				<div class="forum">
+			<% } %>
 				<a class="forum__title" href="/forums/<%= forum._id %>"><%= forum.title %></a>
 				<h3 class="forum__feature">
 					created by <%= forum.author.username %> <%= moment(forum.createdAt).fromNow() %>

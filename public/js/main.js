@@ -44,5 +44,5 @@ window.addEventListener("orientationchange", function() {
 	setShowcaseHeight();
 });
 
-setShowcaseHeight();
+// setShowcaseHeight();
 dropDownEvents();

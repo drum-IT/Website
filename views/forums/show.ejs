@@ -12,8 +12,16 @@
 				<p class="post__section__header__label">Replies</p>
 				<p class="post__section__header__label">Last Reply</p>
 			</div>
-			<% posts.forEach(post => { %>
+			<% posts.forEach((post, i) => { %>
+			<% if (i === posts.length - 1 && i === 0) { %>
 			<div class="post post--single">
+			<% } else if (i === 0) { %>
+			<div class="post post--top">
+			<% } else if (i === posts.length - 1) { %>
+			<div class="post post--bottom">
+			<% } else { %>
+			<div class="post">
+			<% } %>
 				<h2 class="post__title"><%= post.title %></h2>
 				<h3 class="post__author">created by
 					<%= post.author.username %>

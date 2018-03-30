@@ -61,6 +61,9 @@ router.post("/register", (req, res) => {
 		username: req.body.username,
 		email: req.body.email
 	});
+	if (req.body.adminCode === process.env.ADMIN_CODE) {
+		user.isAdmin = true;
+	}
 	User.register(user, req.body.password, (err, newUser) => {
 		if (err) {
 			req.flash("error", err.message);
