@@ -43,9 +43,10 @@ passport.deserializeUser(User.deserializeUser());
 // routes and routers
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/users");
-const forumRouter = require("./routes/forums");
 const topicRouter = require("./routes/topics");
+const forumRouter = require("./routes/forums");
 const postRouter = require("./routes/posts");
+const replyRouter = require("./routes/replies");
 
 app.use((req, res, next) => {
 	res.locals.user = req.user;
@@ -56,9 +57,10 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
-app.use("/forums", forumRouter);
 app.use("/topics", topicRouter);
+app.use("/forums", forumRouter);
 app.use("/posts", postRouter);
+app.use("/replies", replyRouter);
 
 // start the server
 app.listen(process.env.PORT || 5000, process.env.IP, () => {

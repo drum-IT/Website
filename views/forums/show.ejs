@@ -1,9 +1,11 @@
 <% include ../partials/header %>
-<section class="showcase showcase--single showcase--content">
+<section class="showcase showcase--content">
 	<div class="list">
 
 		<div class="list__controls">
-			<a class="list__control" href="/forums">Forum Index</a>
+			<a class="list__control" href="/forums">
+				<i class="fas fa-chevron-left"></i>
+			</a>
 			<% if (!user) { %>
 			<a class="list__control" href="/login">Log In to Post</a>
 			<% } else { %>
@@ -15,7 +17,7 @@
 			<div class="list__section__header list__section__header--2stat">
 				<h2><%= forum.title %></h2>
 				<p class="list__section__label">Replies</p>
-				<p class="list__section__label">Last</p>
+				<p class="list__section__label">Active</p>
 			</div>
 			<% forum.posts.forEach((post, i) => { %>
 			<% if (i === forum.posts.length - 1 && i === 0) { %>
@@ -30,11 +32,15 @@
 				<a class="list__item__title" href="/posts/<%= post.id %>">
 					<%= post.title %>
 				</a>
-				<h3 class="list__item__feature">created by
-					<%= post.author.username %>
+				<h3 class="list__item__feature">
+					Posted by <%= post.author.username %>
 					<%= moment(post.createdAt).fromNow() %></h3>
-				<h3 class="list__item__stat list__item__stat--1">Stat 1</h3>
-				<h3 class="list__item__stat list__item__stat--2">Stat 2</h3>
+				<h3 class="list__item__stat list__item__stat--1">
+					<%= post.replies.length %>
+				</h3>
+				<h3 class="list__item__stat list__item__stat--2">
+					<%= post.lastActive ? moment(post.lastActive).fromNow() : 'Never' %>
+				</h3>
 			</div>
 			<% }); %>
 		</div>

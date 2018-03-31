@@ -21,8 +21,8 @@ const forumSchema = new mongoose.Schema({
 			ref: "Post"
 		}
 	],
-	replies: Number,
-	lastPost: Date
+	replies: { type: Number, default: 0 },
+	lastActive: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("Forum", forumSchema);

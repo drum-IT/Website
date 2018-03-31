@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-<section class="showcase showcase--single showcase--content">
+<section class="showcase showcase--content">
 	<div class="list">
 
 		<div class="list__controls">
@@ -25,7 +25,7 @@
 				</div>
 				<p class="list__section__label">Posts</p>
 				<p class="list__section__label">Replies</p>
-				<p class="list__section__label">Last</p>
+				<p class="list__section__label">Active</p>
 			</div>
 
 			<% topic.forums.forEach((forum, i) => { %>
@@ -40,11 +40,11 @@
 			<% } %>
 				<a class="list__item__title" href="/forums/<%= forum.id %>"><%= forum.title %></a>
 				<h3 class="list__item__feature">
-					created by <%= forum.author.username %> <%= moment(forum.createdAt).fromNow() %>
+					Created by <%= forum.author.username %> <%= moment(forum.createdAt).fromNow() %>
 				</h3>
 				<h3 class="list__item__stat list__item__stat--1"><%= forum.posts.length %></h3>
 				<h3 class="list__item__stat list__item__stat--2"><%= forum.replies || 0 %></h3>
-				<h3 class="list__item__stat list__item__stat--3"><%= forum.lastPost ? moment(forum.lastPost).fromNow() : 'Never' %></h3>
+				<h3 class="list__item__stat list__item__stat--3"><%= forum.lastActive ? moment(forum.lastActive).fromNow() : 'Never' %></h3>
 			</div>
 			<% }); %>
 		</div>

@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+<section class="showcase showcase--content">
+	<div class="list">
+		<div class="list__controls">
+			<a class="list__control" href="/forums/<%= post.forum.id %>">
+				<i class="fas fa-chevron-left"></i>
+			</a>
+			<% if (!user) { %>
+			<a class="list__control" href="/login">Log In to Post</a>
+			<% } else { %>
+			<a class="list__control" href="/replies/new/<%= post.id %>">New Reply</a>
+			<% } %>
+			<h4 class="list__control__title"><%= post.forum.title %></h4>
+		</div>
+		<div class="list__section">
+			<div class="list__section__header list__section__header--nostat">
+				<h2>
+					<%= post.title %>
+				</h2>
+				<p><%= post.content %></p>
+				<p class="list__feature">
+					Posted <%= moment(post.createdAt).fromNow() %>
+					by <%= post.author.username %>
+				</p>
+			</div>
+			<% post.replies.forEach((reply, i) => { %>
+				<% if (i === post.replies.length - 1 && i === 0) { %>
+				<div class="list__item list__item--nostat list__item--single">
+				<% } else if (i === 0) { %>
+				<div class="list__item list__item--nostat list__item--top">
+				<% } else if (i === post.replies.length - 1) { %>
+				<div class="list__item list__item--nostat list__item--bottom">
+				<% } else { %>
+				<div class="list__item list__item--nostat">
+				<% } %>
+					<h3 class="list__item__feature">
+						<%= moment(reply.createdAt).fromNow() %>, <%= post.author.username %> replied...
+					</h3>
+					<p class="list__item__content">
+						<%= reply.content %>
+					</p>
+				</div>
+			<% }); %>
+		</div>
+	</div>
+</section>
+<% include ../partials/footer %>

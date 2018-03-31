@@ -257,7 +257,7 @@ nav {
 .form__container {
 	background: var(--black);
 	border-radius: 5px;
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
 	color: white;
 	padding: 20px 20px;
 }
@@ -391,9 +391,14 @@ nav {
 }
 
 .list__controls {
-	margin-bottom: 20px;
-	width: 100%;
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: 10px;
+	grid-template-columns: auto auto 1fr;
+	justify-content: start;
+	justify-items: start;
 	max-width: 700px;
+	width: 100%;
 }
 
 .list__control {
@@ -404,7 +409,15 @@ nav {
 	font-size: 0.75rem;
 	font-weight: 300;
 	padding: 8px;
+	text-align: center;
 	text-decoration: none;
+}
+
+.list__control__title {
+	align-self: center;
+	justify-self: end;
+	margin: 0;
+	text-align: right;
 }
 
 .list__section {
@@ -424,6 +437,11 @@ nav {
 	grid-template-columns: auto repeat(2, 50px);
 }
 
+.list__section__header--nostat {
+	display: grid;
+	grid-template-columns: auto;
+}
+
 .list__section__title {
 	align-items: center;
 	display: grid;
@@ -440,13 +458,14 @@ nav {
 	margin: 0;
 	margin-bottom: 5px;
 	padding: 0;
+	text-align: center;
 }
 
 .list__item {
 	align-items: center;
 	background: var(--black);
 	border-bottom: 1px solid var(--lightblack);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25); */
 	color: var(--offwhite);
 	display: grid;
 	grid-template-areas:
@@ -464,6 +483,15 @@ nav {
 		"title stat1 stat2"
 		"feature stat1 stat2";
 	grid-template-columns: auto repeat(2, 50px);
+}
+
+.list__item--nostat {
+	grid-template-areas:
+		"feature"
+		"content";
+	grid-template-columns: auto;
+	grid-template-rows: 25px auto;
+	padding: 0 10px;
 }
 
 .list__item--single {
@@ -486,12 +514,24 @@ nav {
 	line-height: 1;
 	margin: 0;
 	text-decoration: none;
-	word-wrap: unset;
+}
+
+.list__item__content {
+	color: var(--offwhite);
+	font-size: 1rem;
+	font-weight: 400;
+	text-decoration: none;
 }
 
 .list__item__title:hover {
 	color: var(--gold);
 	cursor: pointer;
+}
+
+.list__feature {
+	color: hsla(210, 11%, 55%, 1);
+	font-weight: 300;
+	font-size: 0.65rem;
 }
 
 .list__item__feature {

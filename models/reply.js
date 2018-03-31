@@ -34,4 +34,4 @@ const replySchema = new mongoose.Schema({
 	]
 });
 
-module.exports = mongoose.model("Post", replySchema);
+module.exports = mongoose.model("Reply", replySchema);

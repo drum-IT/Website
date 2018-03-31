@@ -25,7 +25,7 @@ forumRouter.get("/new/:topic_id", middleware.isLoggedIn, (req, res) => {
 
 forumRouter.get("/:forum_id", (req, res) => {
 	Forum.findById(req.params.forum_id)
-		.populate({ path: "posts", options: { sort: { createdAt: -1 } } })
+		.populate({ path: "posts", options: { sort: { lastActive: -1 } } })
 		.exec((err, foundForum) => {
 			if (err) {
 				req.flash("error", "There was an error finding the forum.");
@@ -45,6 +45,7 @@ forumRouter.post("/:topic_id", middleware.isLoggedIn, (req, res) => {
 			id: req.user.id,
 			username: req.user.username
 		};
+		req.body.forum.topic = foundTopic.id;
 		Forum.create(req.body.forum, (err, createdForum) => {
 			if (err) {
 				req.flash("error", "There was an error creating the forum.");

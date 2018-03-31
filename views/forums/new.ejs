@@ -1,12 +1,12 @@
 <% include ../partials/header %>
-<section class="showcase showcase--single">
+<section class="showcase">
 	<div class="form__container">
 		<form class="form" action="/forums/<%= topicId %>" method="POST">
 			<h1 class="form__title">New Forum</h1>
 			<div class="form__group form__group--input">
 				<div class="form__input form__input--top">
 					<i class="fas fa-chevron-right input__icon"></i>
-					<input class="text__input" name="forum[title]" placeholder="Forum Name" type="text" autofocus autocomplete="false">
+					<input class="text__input" name="forum[title]" placeholder="Forum Name" type="text" autofocus autocomplete="false" maxlength="40">
 				</div>
 				<div class="form__input form__input--large form__input--bottom">
 					<i class="fas fa-chevron-right input__icon"></i>
