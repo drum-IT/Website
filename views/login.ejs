@@ -1,24 +1,24 @@
 <% include ./partials/header %>
 <section id="showcase" class="showcase showcase--single">
   <div class="form__container">
-    <form class="auth__form" action="/login" method="POST">
-      <h1 class="auth__form--title">Log In</h1>
+    <form class="form" action="/login" method="POST">
+      <h1 class="form__title">Sign In</h1>
       <div class="form__group form__group--input">
         <div class="form__input form__input--top">
           <i class="fas fa-user input__icon"></i>
-          <input class="text__input" name="username" placeholder="username" type="text" autofocus>
+          <input class="text__input text__input--small" name="username" placeholder="username" type="text" autofocus>
         </div>
         <div class="form__input form__input--bottom">
           <i class="fas fa-key input__icon"></i>
-          <input class="text__input" name="password" placeholder="password" type="password">
+          <input class="text__input text__input--small" name="password" placeholder="password" type="password">
         </div>
       </div>
       <input class="form__submit" type="submit" value="Log In">
     </form>
-    <p class="auth__form--links">
-      <a class="auth__form__link auth__form__link--one" href="/">Go Back</a>
-      <a class="auth__form__link auth__form__link--two" href="/register">Sign Up</a>
-      <a class="auth__form__link auth__form__link--three" href="/forgot">Forgot Password</a>
+    <p class="form__links">
+      <a class="form__link form__link--one" href="/">Go Back</a>
+      <a class="form__link form__link--two" href="/register">Sign Up</a>
+      <a class="form__link form__link--three" href="/forgot">Forgot Password</a>
     </p>
   </div>
 </section>

@@ -24,13 +24,15 @@ forumRouter.get("/new/:topic_id", middleware.isLoggedIn, (req, res) => {
 });
 
 forumRouter.get("/:forum_id", (req, res) => {
-	Forum.findById(req.params.forum_id).populate("posts").exec((err, foundForum) => {
-		if (err) {
-			req.flash("error", "There was an error finding the forum.");
-			return res.redirect("/forums");
-		}
-		res.render("forums/show", { page: "forum", forum: foundForum });
-	})
+	Forum.findById(req.params.forum_id)
+		.populate({ path: "posts", options: { sort: { createdAt: -1 } } })
+		.exec((err, foundForum) => {
+			if (err) {
+				req.flash("error", "There was an error finding the forum.");
+				return res.redirect("/forums");
+			}
+			res.render("forums/show", { page: "forum", forum: foundForum });
+		});
 });
 
 forumRouter.post("/:topic_id", middleware.isLoggedIn, (req, res) => {

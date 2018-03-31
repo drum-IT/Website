@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 <section class="showcase showcase--single showcase--content">
-	<div class="post__list">
+	<div class="list">
 
 		<div class="list__controls">
 			<a class="list__control" href="/forums">Forum Index</a>
@@ -11,30 +11,30 @@
 			<% } %>
 		</div>
 
-		<div class="post__section">
-			<div class="post__section__header">
+		<div class="list__section">
+			<div class="list__section__header list__section__header--2stat">
 				<h2><%= forum.title %></h2>
-				<p class="post__section__header__label">Replies</p>
-				<p class="post__section__header__label">Last Reply</p>
+				<p class="list__section__label">Replies</p>
+				<p class="list__section__label">Last</p>
 			</div>
 			<% forum.posts.forEach((post, i) => { %>
 			<% if (i === forum.posts.length - 1 && i === 0) { %>
-			<div class="post post--single">
+			<div class="list__item list__item--2stat list__item--single">
 			<% } else if (i === 0) { %>
-			<div class="post post--top">
+			<div class="list__item list__item--2stat list__item--top">
 			<% } else if (i === forum.posts.length - 1) { %>
-			<div class="post post--bottom">
+			<div class="list__item list__item--2stat list__item--bottom">
 			<% } else { %>
-			<div class="post">
+			<div class="list__item list__item--2stat">
 			<% } %>
-				<a class="post__title" href="/posts/<%= post.id %>">
+				<a class="list__item__title" href="/posts/<%= post.id %>">
 					<%= post.title %>
 				</a>
-				<h3 class="post__author">created by
+				<h3 class="list__item__feature">created by
 					<%= post.author.username %>
 					<%= moment(post.createdAt).fromNow() %></h3>
-				<h3 class="post__stat post__stat--1">Stat 1</h3>
-				<h3 class="post__stat post__stat--2">Stat 2</h3>
+				<h3 class="list__item__stat list__item__stat--1">Stat 1</h3>
+				<h3 class="list__item__stat list__item__stat--2">Stat 2</h3>
 			</div>
 			<% }); %>
 		</div>
