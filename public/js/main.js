@@ -33,8 +33,8 @@ function trimText() {
 	const titles = document.querySelectorAll(".list__item__title");
 	if (titles) {
 		titles.forEach(title => {
-			if (title.innerText.length >= 17) {
-				const newText = title.innerText.substring(0, 17).trim();
+			if (title.innerText.length >= 30) {
+				const newText = title.innerText.substring(0, 30).trim();
 				if (newText.charAt(newText.length - 1).search(reg) > -1) {
 					title.innerHTML = newText + "...";
 				}

@@ -442,7 +442,8 @@ nav {
 		"feature stat1 stat2 stat3";
 	grid-template-columns: auto repeat(3, 50px);
 	grid-template-rows: 1fr 1fr;
-	height: 75px;
+	min-height: 75px;
+	padding: 0 0 0 10px;
 	width: 100%;
 }
 
@@ -467,11 +468,12 @@ nav {
 }
 
 .list__item__title {
-	align-self: end;
+	/* align-self: end; */
 	color: var(--offwhite);
 	font-size: 1rem;
 	font-weight: 300;
-	margin: 0 0 0 10px;
+	line-height: 1;
+	margin: 0;
 	text-decoration: none;
 	word-wrap: unset;
 }
@@ -486,7 +488,6 @@ nav {
 	font-weight: 300;
 	font-size: 0.65rem;
 	grid-area: feature;
-	margin: 0 0 0 10px;
 }
 
 .list__item__stat {
