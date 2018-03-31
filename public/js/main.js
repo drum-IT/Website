@@ -51,7 +51,6 @@ function trimText() {
 
 window.addEventListener("click", ev => {
 	const classList = ev.target.classList;
-	console.log(classList);
 	if (
 		!classList.contains("dropdown__icon") &&
 		!classList.contains("dropdown__link") &&
