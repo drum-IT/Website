@@ -150,16 +150,15 @@ router.post("/forgot", middleware.csrf, async (req, res) => {
 				const mailOptions = {
 					to: user.email,
 					from: process.env.GMAIL_USER,
-					subject: "FuskerBrothers Password Reset Request",
-					// text: `${process.env.HEADER}${req.headers.host}/reset/${token}`
+					subject: "FBT Password Reset Request",
 					html:
 						`<header style="background: #292e33;border-bottom: 5px solid #c7ac62;height: 90px;"></header>` +
 						`<div class="content" style="align-items: center;display: flex;flex-direction: column;height: calc(100% - 180px);min-height: 300px;justify-content: center;">` +
 							`<div class="content--main" style="display: flex;flex-direction: column;padding: 20px;">` +
-								`<h2 style="margin: 0;margin-bottom: 30px;">FuskerBrothers Password Reset Request</h2>` +
+								`<h2 style="margin: 0;margin-bottom: 30px;">FBT Password Reset Request</h2>` +
 								`<p>Hi ${user.username},</p>` +
 								`<p>A password reset has been requested for your account.</p>` +
-								`<a class="reset__button" href="${process.env.HEADER}${req.headers.host}/reset/${token}" style="align-items: center;align-self: end;background: #3e6a9f;border-radius: 5px;color: #f7f7f7;display: flex;height: 50px;justify-content: center;margin-top: 50px;width: 100%;text-decoration: none;">Reset Password</a>` +
+								`<a class="reset__button" href="${process.env.HEADER}${req.headers.host}/reset/${token}" style="align-items: center;align-self: end;background: #3E6A9F;border-radius: 5px;color: #f7f7f7;display: flex;height: 50px;justify-content: center;margin-top: 50px;width: 100%;text-decoration: none;">Reset Password</a>` +
 							`</div>` +
 						`</div>`
 				};
@@ -226,12 +225,12 @@ router.post("/reset/:token", (req, res) => {
 				const mailOptions = {
 					to: user.email,
 					from: process.env.GMAIL_USER,
-					subject: "FuskerBrothers Password Reset Confirmation",
+					subject: "FBT Password Reset Confirmation",
 					html:
 						`<header style="background: #292e33;border-bottom: 5px solid #c7ac62;height: 90px;"></header>` +
 						`<div class="content" style="align-items: center;display: flex;flex-direction: column;height: calc(100% - 180px);min-height: 300px;justify-content: center;">` +
 							`<div class="content--main" style="display: flex;flex-direction: column;padding: 20px;">` +
-								`<h2 style="margin: 0;margin-bottom: 30px;">FuskerBrothers Password Reset Confirmation</h2>` +
+								`<h2 style="margin: 0;margin-bottom: 30px;">FBT Password Reset Confirmation</h2>` +
 								`<p>Hi ${user.username},</p>` +
 								`<p>The password for your account has been changed.</p>` +
 							`</div>` +
