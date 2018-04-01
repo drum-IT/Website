@@ -363,7 +363,6 @@ nav {
 	grid-auto-flow: column;
 	grid-template-areas: "one two three";
 	grid-template-columns: repeat(3, minmax(70px, 150px));
-	/* margin-top: 30px; */
 	margin-bottom: 0;
 }
 
