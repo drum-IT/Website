@@ -91,7 +91,7 @@ postRouter.post("/:forum_id", middleware.isLoggedIn, (req, res) => {
 					req.flash("error", "Error saving the forum");
 					return res.redirect("/forums");
 				}
-				res.redirect("/forums/" + req.params.forum_id);
+				res.redirect("/posts/" + createdPost.id);
 			});
 		});
 	});
