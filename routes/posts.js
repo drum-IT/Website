@@ -20,25 +20,46 @@ postRouter.get("/new/:forum_id", middleware.isLoggedIn, (req, res) => {
 });
 
 postRouter.get("/:post_id", (req, res) => {
+	const perPage = 10;
+	const pageQuery = parseInt(req.query.page);
+	const replies = parseInt(req.query.replies);
+	let pageNumber = pageQuery ? pageQuery : 1;
+	if (replies) {
+		const pages = Math.ceil(replies / perPage);
+		pageNumber = pages;
+		if (replies / pages > perPage) {
+			pageNumber++;
+		}
+	}
 	Post.findById(req.params.post_id)
 		.populate({
 			path: "replies",
 			options: {
 				sort: {
 					createdAt: 1
-				}
+				},
+				skip: perPage * pageNumber - perPage,
+				limit: perPage
 			}
-		}).populate("forum")
+		})
+		.populate("forum")
 		.exec((err, foundPost) => {
-			if (err) {
-				req.flash("error", "There was an error finding the post.");
-				return res.redirect("/forums");
-			}
-			if (!foundPost) {
-				req.flash("error", "There was an error finding the post.");
-				return res.redirect("/forums");
-			}
-			res.render("posts/show", { page: "forum", post: foundPost });
+			Reply.find()
+				.where("post")
+				.equals(foundPost._id)
+				.count((err, count) => {
+					if (err) {
+						req.flash("error", "There was an error finding the reply.");
+						return res.redirect("/forums");
+					}
+					res.render("posts/show", {
+						page: "forum",
+						post: foundPost,
+						currentPage: pageNumber,
+						replies: count,
+						pages: Math.ceil(count / perPage)
+					});
+				});
 		});
 });
 

@@ -58,9 +58,10 @@ replyRouter.post("/:post_id", middleware.isLoggedIn, (req, res) => {
 						foundForum.replies++;
 						foundForum.lastActive = Date.now();
 						foundForum.save();
-						res.redirect("/posts/" + req.params.post_id);
+						Reply.find().where("post").equals(savedPost._id).count((err, count) => {
+							res.redirect("/posts/" + req.params.post_id + "?replies=" + count);
+						});
 					});
-					
 				});
 			});
 		});

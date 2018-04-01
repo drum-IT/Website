@@ -391,14 +391,25 @@ nav {
 }
 
 .list__controls {
+	align-items: center;
 	display: grid;
-	grid-auto-flow: column;
 	grid-gap: 10px;
 	grid-template-columns: auto auto 1fr;
+	grid-template-rows: auto 30px;
+	grid-template-areas:
+		"controls controls controls"
+		"paginator paginator paginator";
 	justify-content: start;
 	justify-items: start;
 	max-width: 1000px;
 	width: 100%;
+}
+
+.list__controls--bottom {
+	grid-template-rows: 30px auto;
+	grid-template-areas:
+		"paginator paginator paginator"
+		"controls controls controls";
 }
 
 .list__control {
@@ -413,18 +424,74 @@ nav {
 	text-decoration: none;
 }
 
-.list__control__title {
-	align-self: center;
-	justify-self: end;
-	margin: 0;
-	text-align: right;
+.list__control span {
+	margin-left: 10px;
+}
+
+.paginator {
+	align-items: center;
+	display: grid;
+	grid-area: paginator;
+	grid-auto-flow: column;
+	grid-auto-columns: repeat(auto-fill, 1fr);
+	justify-items: center;
+	/* justify-self: end; */
+	list-style: none;
+	padding: 0;
+	width: 100%;
+}
+
+.paginator > li {
+	font-size: 1rem;
+	height: 1.5rem;
+	width: 100%;
+}
+
+.paginator__link {
+	align-items: center;
+	background: var(--black);
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	color: var(--offwhite);
+	cursor: pointer;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.paginator__link:hover {
+	color: var(--gold);
+}
+
+.paginator--first {
+	border: none;
+	border-right: 1px solid white;
+	border-radius: 5px 0 0 5px;
+}
+
+.paginator--last {
+	border: none;
+	border-left: 1px solid white;
+	border-radius: 0 5px 5px 0;
+}
+
+.paginator--active {
+	background: var(--blue);
+	pointer-events: none;
+}
+
+.paginator--disabled {
+	background: var(--lightblack);
+	pointer-events: none;
 }
 
 .list__section {
 	display: grid;
 	width: 100%;
 	max-width: 1000px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .list__section__header {
@@ -459,6 +526,12 @@ nav {
 	margin-bottom: 5px;
 	padding: 0;
 	text-align: center;
+}
+
+.list__feature {
+	color: hsla(210, 11%, 55%, 1);
+	font-weight: 300;
+	font-size: 0.65rem;
 }
 
 .list__item {
@@ -526,12 +599,6 @@ nav {
 .list__item__title:hover {
 	color: var(--gold);
 	cursor: pointer;
-}
-
-.list__feature {
-	color: hsla(210, 11%, 55%, 1);
-	font-weight: 300;
-	font-size: 0.65rem;
 }
 
 .list__item__feature {

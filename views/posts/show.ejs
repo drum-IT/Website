@@ -4,13 +4,14 @@
 		<div class="list__controls">
 			<a class="list__control" href="/forums/<%= post.forum.id %>">
 				<i class="fas fa-chevron-left"></i>
+				<span><%= post.forum.title %></span>
 			</a>
 			<% if (!user) { %>
-			<a class="list__control" href="/login">Log In to Post</a>
+			<a class="list__control" href="/login">Log In to Reply</a>
 			<% } else { %>
 			<a class="list__control" href="/replies/new/<%= post.id %>">New Reply</a>
 			<% } %>
-			<h4 class="list__control__title"><%= post.forum.title %></h4>
+			<% include ../partials/paginator %>
 		</div>
 		<div class="list__section">
 			<div class="list__section__header list__section__header--nostat">
@@ -20,7 +21,7 @@
 				<p><%= post.content %></p>
 				<p class="list__feature">
 					Posted <%= moment(post.createdAt).fromNow() %>
-					by <%= post.author.username %>
+					by <%= post.author.username %> - <%= replies %> replies
 				</p>
 			</div>
 			<% post.replies.forEach((reply, i) => { %>
@@ -42,6 +43,22 @@
 				</div>
 			<% }); %>
 		</div>
+		<% if (post.replies.length > 0) { %>
+		<div class="list__controls list__controls--bottom">
+			<a class="list__control" href="/forums/<%= post.forum.id %>">
+				<i class="fas fa-chevron-left"></i>
+				<span>
+					<%= post.forum.title %>
+				</span>
+			</a>
+			<% if (!user) { %>
+			<a class="list__control" href="/login">Log In to Reply</a>
+			<% } else { %>
+			<a class="list__control" href="/replies/new/<%= post.id %>">New Reply</a>
+			<% } %>
+			<% include ../partials/paginator %>
+		</div>
+		<% } %>
 	</div>
 </section>
 <% include ../partials/footer %>

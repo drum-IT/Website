@@ -158,7 +158,7 @@ router.post("/forgot", middleware.csrf, async (req, res) => {
 								`<h2 style="margin: 0;margin-bottom: 30px;">FBT Password Reset Request</h2>` +
 								`<p>Hi ${user.username},</p>` +
 								`<p>A password reset has been requested for your account.</p>` +
-								`<a class="reset__button" href="${process.env.HEADER}${req.headers.host}/reset/${token}" style="align-items: center;align-self: end;background: #3E6A9F;border-radius: 5px;color: #f7f7f7;display: flex;height: 50px;justify-content: center;margin-top: 50px;width: 100%;text-decoration: none;">Reset Password</a>` +
+								`<a class="reset__button" style="align-items: center;align-self: end;background: #3E6A9F;border-radius: 5px;color: #f7f7f7;display: flex;height: 50px;justify-content: center;margin-top: 50px;width: 100%;text-decoration: none;" href="${process.env.HEADER}${req.headers.host}/reset/${token}">Reset Password</a>` +
 							`</div>` +
 						`</div>`
 				};

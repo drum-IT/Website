@@ -11,6 +11,7 @@
 			<% } else { %>
 			<a class="list__control" href="/posts/new/<%= forum.id %>">New Post</a>
 			<% } %>
+			<% include ../partials/paginator %>
 		</div>
 
 		<div class="list__section">
@@ -44,6 +45,19 @@
 			</div>
 			<% }); %>
 		</div>
+		<% if (forum.posts.length > 0) { %>
+		<div class="list__controls list__controls--bottom">
+			<a class="list__control" href="/forums">
+				<i class="fas fa-chevron-left"></i>
+			</a>
+			<% if (!user) { %>
+			<a class="list__control" href="/login">Log In to Post</a>
+			<% } else { %>
+			<a class="list__control" href="/posts/new/<%= forum.id %>">New Post</a>
+			<% } %>
+			<% include ../partials/paginator %>
+		</div>
+		<% } %>
 
 	</div>
 </section>

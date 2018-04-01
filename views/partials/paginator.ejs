@@ -1,0 +1,70 @@
+<% if (pages && pages > 0) { %>
+<ul class="paginator">
+	<% if (currentPage === 1) { %>
+	<li>
+		<a class="paginator__link paginator--first paginator--disabled">
+			<i class="fas fa-chevron-circle-left"></i>
+		</a>
+	</li>
+	<% } else { %>
+	<li>
+		<a class="paginator__link paginator--first" href="/posts/<%= post.id %>">
+			<i class="fas fa-chevron-circle-left"></i>
+		</a>
+	</li>
+	<% } %>
+	<% if (currentPage === 1) { %>
+	<li>
+		<a class="paginator__link paginator--disabled">
+			<i class="fas fa-chevron-left"></i>
+		</a>
+	</li>
+	<% } else { %>
+	<li>
+		<a class="paginator__link" href="/posts/<%= post.id %>?page=<%= Number(currentPage) - 1 %>">
+			<i class="fas fa-chevron-left"></i>
+		</a>
+	</li>
+	<% } %>
+	<% var i = (Number(currentPage) > 3 ? Number(currentPage) - 2 : 1) %>
+	<% if (i !== 1) { %>
+	<li><a class="paginator__link paginator--disabled">...</a></li>
+	<% } %>
+	<% for (; i <= (Number(currentPage) + 2) && i <= pages; i++) { %>
+		<% if (i == currentPage) { %>
+		<li><a class="paginator__link paginator--active"><%= i %></a></li>
+		<% } else { %>
+		<li><a class="paginator__link" href="/posts/<%= post.id %>?page=<%= i %>"><%= i %></a></li>
+		<% } %>
+		<% if (i == Number(currentPage) + 2 && i < pages) { %>
+		<li><a class="paginator__link paginator--disabled">...</a></li>
+		<% } %>
+	<% } %>
+	<% if (currentPage === pages) { %>
+	<li>
+		<a class="paginator__link paginator--disabled">
+			<i class="fas fa-chevron-right"></i>
+		</a>
+	</li>
+	<% } else { %>
+	<li>
+		<a class="paginator__link" href="/posts/<%= post.id %>?page=<%= Number(currentPage) + 1 %>">
+			<i class="fas fa-chevron-right"></i>
+		</a>
+	</li>
+	<% } %>
+	<% if (currentPage === pages) { %>
+	<li>
+		<a class="paginator__link paginator--last paginator--disabled">
+			<i class="fas fa-chevron-circle-right"></i>
+		</a>
+	</li>
+	<% } else { %>
+	<li>
+		<a class="paginator__link paginator--last" href="/posts/<%= post.id %>?page=<%= pages %>">
+			<i class="fas fa-chevron-circle-right"></i>
+		</a>
+	</li>
+	<% } %>
+</ul>
+<% } %>
