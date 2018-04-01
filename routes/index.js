@@ -33,7 +33,7 @@ router.get("/logout", (req, res) => {
 	res.redirect("/");
 });
 
-router.get("/forgot", middleware.csrf,  (req, res) => {
+router.get("/forgot", middleware.csrf, (req, res) => {
 	res.render("forgot", { page: "forgot", csrfToken: req.csrfToken() });
 });
 
@@ -70,28 +70,7 @@ router.post("/register", (req, res) => {
 			return res.redirect("register");
 		}
 		passport.authenticate("local")(req, res, () => {
-			req.flash("success", `Welcome to FuskerBrothers, ${newUser.username}!`);
-			const smtpTransport = nodemailer.createTransport({
-				service: "Gmail",
-				auth: {
-					user: process.env.GMAIL_USER,
-					pass: process.env.GMAIL_PASS
-				}
-			});
-			const mailOptions = {
-				to: user.email,
-				from: process.env.GMAIL_USER,
-				subject: "Welcome to FuskerBrothers!",
-				text:
-					"Hi " +
-					newUser.username +
-					"," +
-					"\n\n" +
-					"Thanks for signing up for FuskerBrothers!"
-			};
-			smtpTransport.sendMail(mailOptions, err => {
-				// done(err, "done");
-			});
+			req.flash("success", `Welcome to the site, ${newUser.username}!`);
 			res.redirect("/");
 		});
 	});
@@ -140,43 +119,32 @@ router.post("/forgot", middleware.csrf, async (req, res) => {
 				});
 			},
 			(token, user, done) => {
-				const smtpTransport = nodemailer.createTransport({
-					service: "Gmail",
-					auth: {
-						user: process.env.GMAIL_USER,
-						pass: process.env.GMAIL_PASS
-					}
-				});
-				const mailOptions = {
+				const sgMail = require("@sendgrid/mail");
+				sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+				const msg = {
 					to: user.email,
-					from: process.env.GMAIL_USER,
-					subject: "FBT Password Reset Request",
+					from: process.env.ADMIN_EMAIL,
+					subject: "Password Reset Request",
+					text: "and easy to do anywhere, even with Node.js",
 					html:
-						`<header style="background: #292e33;border-bottom: 5px solid #c7ac62;height: 90px;"></header>` +
-						`<div class="content" style="align-items: center;display: flex;flex-direction: column;height: calc(100% - 180px);min-height: 300px;justify-content: center;">` +
-							`<div class="content--main" style="display: flex;flex-direction: column;padding: 20px;">` +
-								`<h2 style="margin: 0;margin-bottom: 30px;">FBT Password Reset Request</h2>` +
-								`<p>Hi ${user.username},</p>` +
-								`<p>A password reset has been requested for your account.</p>` +
-								`<a class="reset__button" style="align-items: center;align-self: end;background: #3E6A9F;border-radius: 5px;color: #f7f7f7;display: flex;height: 50px;justify-content: center;margin-top: 50px;width: 100%;text-decoration: none;" href="${process.env.HEADER}${req.headers.host}/reset/${token}">Reset Password</a>` +
-							`</div>` +
-						`</div>`
+						`<p>Hello ${user.username},</p>` +
+						`<p>A password reset has been requested for your account.</p>` +
+						`<p>If you did not request a password reset, please disregard this email.</p>` +
+						`<p>Click below if you wish to reset your password.</p>` +
+						`<a href="${process.env.HEADER}${
+							req.headers.host
+						}/reset/${token}">Reset Password</a>`
 				};
-				smtpTransport.sendMail(mailOptions, err => {
-					req.flash(
-						"success",
-						"Please check your email for password reset instructions."
-					);
-					done(err, "done");
-				});
+				sgMail.send(msg);
+				req.flash(
+					"success",
+					"Please check your email for password reset instructions."
+				);
+				done("done");
 			}
 		],
-		err => {
-			if (err) {
-				next(err);
-			} else {
-				res.redirect("/forgot");
-			}
+		() => {
+			res.redirect("/forgot");
 		}
 	);
 });
@@ -215,40 +183,26 @@ router.post("/reset/:token", (req, res) => {
 				);
 			},
 			(user, done) => {
-				const smtpTransport = nodemailer.createTransport({
-					service: "Gmail",
-					auth: {
-						user: process.env.GMAIL_USER,
-						pass: process.env.GMAIL_PASS
-					}
-				});
-				const mailOptions = {
+				const sgMail = require("@sendgrid/mail");
+				sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+				const msg = {
 					to: user.email,
-					from: process.env.GMAIL_USER,
-					subject: "FBT Password Reset Confirmation",
+					from: process.env.ADMIN_EMAIL,
+					subject: "Password Reset Confirmation",
 					html:
-						`<header style="background: #292e33;border-bottom: 5px solid #c7ac62;height: 90px;"></header>` +
-						`<div class="content" style="align-items: center;display: flex;flex-direction: column;height: calc(100% - 180px);min-height: 300px;justify-content: center;">` +
-							`<div class="content--main" style="display: flex;flex-direction: column;padding: 20px;">` +
-								`<h2 style="margin: 0;margin-bottom: 30px;">FBT Password Reset Confirmation</h2>` +
-								`<p>Hi ${user.username},</p>` +
-								`<p>The password for your account has been changed.</p>` +
-							`</div>` +
-						`</div>`
+						`<p>Hello ${user.username},</p>` +
+						`<p>The password for your account has been changed.</p>`
 				};
-				smtpTransport.sendMail(mailOptions, err => {
-					req.flash("success", "Your password has been reset!");
-					done(err);
-				});
+				sgMail.send(msg);
+				req.flash(
+					"success",
+					"Your password has been reset."
+				);
+				done("done");
 			}
 		],
-		err => {
-			if (err) {
-				req.flash("error", "there was an error!");
-				res.redirect("back");
-			} else {
-				res.redirect("/");
-			}
+		() => {
+			res.redirect("/");
 		}
 	);
 });
