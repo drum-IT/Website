@@ -567,10 +567,6 @@ nav {
 	min-height: 75px;
 	padding: 10px 10px 10px 10px;
 	width: 100%;
-	max-width: 1000px;
-	overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
 }
 
 .list__item--2stat {
@@ -619,8 +615,8 @@ nav {
 	font-size: 1rem;
 	font-weight: 400;
 	text-decoration: none;
-	overflow-wrap: break-word;
-  word-wrap: break-word;
+	text-overflow: ellipsis;
+	overflow-y: hidden;
   hyphens: auto;
 }
 
