@@ -258,6 +258,7 @@ nav {
 .form__container {
 	background: var(--black);
 	border-radius: 5px;
+	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
 	color: white;
 	padding: 20px 20px;
 }
@@ -330,10 +331,10 @@ nav {
 	background: none;
 	border: none;
 	color: var(--offwhite);
+	outline: none;
 	resize: none;
 	height: calc(100%);
 	margin: 0;
-	margin-top: -1px;
 	outline: none;
 	padding: 0;
 	width: calc(100% - 63px);
@@ -363,7 +364,7 @@ nav {
 	grid-auto-flow: column;
 	grid-template-areas: "one two three";
 	grid-template-columns: repeat(3, minmax(70px, 150px));
-	margin-bottom: 0;
+	margin-top: 30px;
 }
 
 .form__link {
@@ -393,7 +394,6 @@ nav {
 	display: flex;
 	flex-direction: column;
 	width: 90%;
-	max-width: 1000px;
 }
 
 .list__controls {
@@ -401,19 +401,18 @@ nav {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: auto auto 1fr;
-	grid-template-rows: 30px 30px;
+	grid-template-rows: auto 30px;
 	grid-template-areas:
 		"controls controls controls"
 		"paginator paginator paginator";
 	justify-content: start;
 	justify-items: start;
-	margin: 0;
 	max-width: 1000px;
 	width: 100%;
 }
 
 .list__controls--bottom {
-	grid-template-rows: 30px 30px;
+	grid-template-rows: 30px auto;
 	grid-template-areas:
 		"paginator paginator paginator"
 		"controls controls controls";
@@ -508,7 +507,6 @@ nav {
 .list__section__header {
 	display: grid;
 	grid-template-columns: auto repeat(3, 45px);
-	padding-right: 10px;
 }
 
 .list__section__header--2stat {
@@ -522,13 +520,17 @@ nav {
 }
 
 .list__section__title {
-	color: var(--black);
+	align-items: center;
+	display: grid;
+	grid-gap: 10px;
+	grid-auto-flow: column;
+	grid-template-columns: auto 1fr;
+	justify-items: start;
 }
 
 .list__section__label {
 	align-self: end;
-	color: var(--black);
-	font-size: 0.65rem;
+	font-size: 0.7rem;
 	justify-self: center;
 	margin: 0;
 	margin-bottom: 5px;
@@ -550,27 +552,24 @@ nav {
 	color: var(--silver);
 	font-weight: 300;
 	font-size: 0.65rem;
-	/* margin: -10px 0 10px 0; */
+	margin: -10px 0 20px 0;
 }
 
 .list__item {
 	align-items: center;
 	background: var(--black);
 	border-bottom: 1px solid var(--lightblack);
+	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25); */
 	color: var(--offwhite);
 	display: grid;
 	grid-template-areas:
 		"title stat1 stat2 stat3"
 		"feature stat1 stat2 stat3";
 	grid-template-columns: auto repeat(3, 45px);
-	grid-template-rows: 1fr auto;
+	grid-template-rows: 1fr 1fr;
 	min-height: 75px;
-	padding: 10px 10px 10px 10px;
+	padding: 10px 10px;
 	width: 100%;
-	max-width: 1000px;
-	overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
 }
 
 .list__item--2stat {
@@ -585,7 +584,7 @@ nav {
 		"feature"
 		"content";
 	grid-template-columns: auto;
-	grid-template-rows: auto auto;
+	grid-template-rows: 25px auto;
 }
 
 .list__item--single {
@@ -618,16 +617,11 @@ nav {
 	color: var(--offwhite);
 	font-size: 1rem;
 	font-weight: 400;
+	/* margin: 5px 0 0 0; */
 	text-decoration: none;
 	overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
-}
-
-.list__item__subtitle {
-	color: var(--silver);
-	font-size: .9rem;
-	margin: 5px 0 10px 0;
 }
 
 .list__item__title:hover {
@@ -636,18 +630,16 @@ nav {
 }
 
 .list__item__feature {
-	align-self: start;
-	grid-area: feature span 1;
-	margin: 0 0 10px 0;
-}
-
-.list__item--nostat > .list__item__feature {
-	margin: 0;
+	color: hsla(210, 11%, 55%, 1);
+	font-weight: 300;
+	font-size: 0.65rem;
+	grid-area: feature;
 }
 
 .list__item__stat {
 	align-self: center;
-	color: var(--silver);
+	color: hsla(210, 11%, 75%, 1);
+	color: hsla(210, 11%, 55%, 1);
 	font-weight: 300;
 	font-size: 0.65rem;
 	justify-self: center;
