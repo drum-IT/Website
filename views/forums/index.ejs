@@ -2,7 +2,7 @@
 <section class="showcase showcase--content">
 	<div class="list">
 
-		<div class="list__controls">
+		<div class="list__controls list__controls--nonpaginate">
 			<% if (!user) { %>
 			<a class="list__control" href="/login">Log In to Post</a>
 			<% } else if (user.isAdmin) { %>
@@ -17,11 +17,6 @@
 					<h2>
 						<%= topic.title %>
 					</h2>
-					<% if (!user) { %>
-
-					<% } else if (user.isAdmin) { %>
-					<a class="list__control" href="/forums/new/<%= topic.id %>">New Forum</a>
-					<% } %>
 				</div>
 				<p class="list__section__label">Posts</p>
 				<p class="list__section__label">Replies</p>
@@ -48,77 +43,14 @@
 			</div>
 			<% }); %>
 		</div>
+		<div class="list__controls list__controls--nonpaginate">
+		<% if (!user) { %>
+			<a class="list__control" href="/login">Log In to Post</a>
+			<% } else if (user.isAdmin) { %>
+			<a class="list__control" href="/forums/new/<%= topic.id %>">New <%= topic.title %> Forum</a>
+			<% } %>
+		</div>
 		<% }); %>
-
-		<!-- <div class="forum__section">
-			<div class="forum__section__header">
-				<h2 class="forum__section__title">Forum Section</h2>
-				<p class="forum__section__header__label">Posts</p>
-				<p class="forum__section__header__label">Replies</p>
-				<p class="forum__section__header__label">Last Post</p>
-			</div>
-			<div class="forum forum--single">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-		</div>
-
-		<div class="forum__section">
-			<div class="forum__section__header">
-				<h2 class="forum__section__title">Forum Section</h2>
-				<p class="forum__section__header__label">Posts</p>
-				<p class="forum__section__header__label">Replies</p>
-				<p class="forum__section__header__label">Last Post</p>
-			</div>
-			<div class="forum forum--top">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-			<div class="forum forum--bottom">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-		</div>
-
-		<div class="forum__section">
-			<div class="forum__section__header">
-				<h2 class="forum__section__title">Forum Section</h2>
-				<p class="forum__section__header__label">Posts</p>
-				<p class="forum__section__header__label">Replies</p>
-				<p class="forum__section__header__label">Last Post</p>
-			</div>
-			<div class="forum forum--top">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-			<div class="forum">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-			<div class="forum forum--bottom">
-				<h2 class="forum__title">Forum Title</h2>
-				<h3 class="forum__feature">Forum Feature</h3>
-				<h3 class="forum__stat forum__stat--1">Stat 1</h3>
-				<h3 class="forum__stat forum__stat--2">Stat 2</h3>
-				<h3 class="forum__stat forum__stat--3">Stat 3</h3>
-			</div>
-		</div> -->
-
 	</div>
 </section>
 

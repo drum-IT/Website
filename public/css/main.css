@@ -331,6 +331,8 @@ nav {
 	outline: none;
 	resize: none;
 	height: calc(100%);
+	margin: 0;
+	padding: 0;
 	width: calc(100% - 63px);
 }
 
@@ -410,6 +412,10 @@ nav {
 	grid-template-areas:
 		"paginator paginator paginator"
 		"controls controls controls";
+}
+
+.list__controls--nonpaginate {
+	grid-template-rows: auto;
 }
 
 .list__control {
