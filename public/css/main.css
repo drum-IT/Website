@@ -14,6 +14,7 @@
 	--ming: #355c7d;
 	--headerHeight: 90px;
 	--headerHeightSM: 50px;
+	--silver: hsla(210, 11%, 55%, 1);
 }
 
 html,
@@ -257,7 +258,6 @@ nav {
 .form__container {
 	background: var(--black);
 	border-radius: 5px;
-	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
 	color: white;
 	padding: 20px 20px;
 }
@@ -317,9 +317,11 @@ nav {
 }
 
 .text__input {
+	align-items: flex-start;
 	background: none;
 	border: none;
 	color: var(--offwhite);
+	display: flex;
 	outline: none;
 	width: calc(100% - 63px);
 }
@@ -328,10 +330,11 @@ nav {
 	background: none;
 	border: none;
 	color: var(--offwhite);
-	outline: none;
 	resize: none;
 	height: calc(100%);
 	margin: 0;
+	margin-top: -1px;
+	outline: none;
 	padding: 0;
 	width: calc(100% - 63px);
 }
@@ -360,7 +363,8 @@ nav {
 	grid-auto-flow: column;
 	grid-template-areas: "one two three";
 	grid-template-columns: repeat(3, minmax(70px, 150px));
-	margin-top: 30px;
+	/* margin-top: 30px; */
+	margin-bottom: 0;
 }
 
 .form__link {
@@ -403,6 +407,7 @@ nav {
 		"paginator paginator paginator";
 	justify-content: start;
 	justify-items: start;
+	margin: 0;
 	max-width: 1000px;
 	width: 100%;
 }
@@ -431,25 +436,25 @@ nav {
 }
 
 .list__control span {
-	margin-left: 10px;
+	margin-left: 3px;
 }
 
 .paginator {
 	align-items: center;
 	display: grid;
+	font-size: 0.75rem;
 	grid-area: paginator;
 	grid-auto-flow: column;
 	grid-auto-columns: repeat(auto-fill, 1fr);
+	height: 100%;
 	justify-items: center;
-	/* justify-self: end; */
 	list-style: none;
 	padding: 0;
 	width: 100%;
 }
 
 .paginator > li {
-	font-size: 1rem;
-	height: 1.5rem;
+	height: 100%;
 	width: 100%;
 }
 
@@ -502,12 +507,13 @@ nav {
 
 .list__section__header {
 	display: grid;
-	grid-template-columns: auto repeat(3, 50px);
+	grid-template-columns: auto repeat(3, 45px);
+	padding-right: 10px;
 }
 
 .list__section__header--2stat {
 	display: grid;
-	grid-template-columns: auto repeat(2, 50px);
+	grid-template-columns: auto repeat(2, 45px);
 }
 
 .list__section__header--nostat {
@@ -516,17 +522,13 @@ nav {
 }
 
 .list__section__title {
-	align-items: center;
-	display: grid;
-	grid-gap: 10px;
-	grid-auto-flow: column;
-	grid-template-columns: auto 1fr;
-	justify-items: start;
+	color: var(--black);
 }
 
 .list__section__label {
 	align-self: end;
-	font-size: 0.7rem;
+	color: var(--black);
+	font-size: 0.65rem;
 	justify-self: center;
 	margin: 0;
 	margin-bottom: 5px;
@@ -534,26 +536,36 @@ nav {
 	text-align: center;
 }
 
+.list__content__title {
+	color: var(--black);
+	margin: 20px 0 -10px 0;
+}
+
+.list__content {
+	color: var(--black);
+	margin: 0;
+}
+
 .list__feature {
-	color: hsla(210, 11%, 55%, 1);
+	color: var(--silver);
 	font-weight: 300;
 	font-size: 0.65rem;
+	margin: -10px 0 20px 0;
 }
 
 .list__item {
 	align-items: center;
 	background: var(--black);
 	border-bottom: 1px solid var(--lightblack);
-	/* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25); */
 	color: var(--offwhite);
 	display: grid;
 	grid-template-areas:
 		"title stat1 stat2 stat3"
 		"feature stat1 stat2 stat3";
-	grid-template-columns: auto repeat(3, 50px);
-	grid-template-rows: 1fr 1fr;
+	grid-template-columns: auto repeat(3, 45px);
+	grid-template-rows: 1fr auto;
 	min-height: 75px;
-	padding: 0 0 0 10px;
+	padding: 10px 10px 10px 10px;
 	width: 100%;
 }
 
@@ -561,7 +573,7 @@ nav {
 	grid-template-areas:
 		"title stat1 stat2"
 		"feature stat1 stat2";
-	grid-template-columns: auto repeat(2, 50px);
+	grid-template-columns: auto repeat(2, 45px);
 }
 
 .list__item--nostat {
@@ -569,8 +581,7 @@ nav {
 		"feature"
 		"content";
 	grid-template-columns: auto;
-	grid-template-rows: 25px auto;
-	padding: 0 10px;
+	grid-template-rows: minmax(20px, auto) auto;
 }
 
 .list__item--single {
@@ -586,6 +597,10 @@ nav {
 	border-radius: 0 0 5px 5px;
 }
 
+.list__item__headline {
+	height: 100%;
+}
+
 .list__item__title {
 	color: var(--offwhite);
 	font-size: 1rem;
@@ -599,7 +614,17 @@ nav {
 	color: var(--offwhite);
 	font-size: 1rem;
 	font-weight: 400;
+	margin: 5px 0 0 0;
 	text-decoration: none;
+	overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.list__item__subtitle {
+	color: var(--silver);
+	font-size: .9rem;
+	margin: 5px 0 10px 0;
 }
 
 .list__item__title:hover {
@@ -608,16 +633,14 @@ nav {
 }
 
 .list__item__feature {
-	color: hsla(210, 11%, 55%, 1);
-	font-weight: 300;
-	font-size: 0.65rem;
+	align-self: start;
 	grid-area: feature;
+	margin: 0 0 0 0;
 }
 
 .list__item__stat {
 	align-self: center;
-	color: hsla(210, 11%, 75%, 1);
-	color: hsla(210, 11%, 55%, 1);
+	color: var(--silver);
 	font-weight: 300;
 	font-size: 0.65rem;
 	justify-self: center;

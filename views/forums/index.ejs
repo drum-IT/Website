@@ -33,8 +33,15 @@
 			<% } else { %>
 			<div class="list__item">
 			<% } %>
-				<a class="list__item__title" href="/forums/<%= forum.id %>"><%= forum.title %></a>
-				<h3 class="list__item__feature">
+				<div class="list__item__headline">
+					<a class="list__item__title" href="/forums/<%= forum.id %>">
+						<%= forum.title %>
+					</a>
+					<p class="list__item__subtitle">
+						<%= forum.description %>
+					</p>
+				</div>
+				<h3 class="list__feature list__item__feature">
 					Created by <%= forum.author.username %> <%= moment(forum.createdAt).fromNow() %>
 				</h3>
 				<h3 class="list__item__stat list__item__stat--1"><%= forum.posts.length %></h3>

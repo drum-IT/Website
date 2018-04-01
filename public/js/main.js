@@ -68,4 +68,4 @@ window.addEventListener("click", ev => {
 });
 
 displayAlert();
-trimText();
+// trimText();
