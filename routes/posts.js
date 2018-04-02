@@ -44,6 +44,10 @@ postRouter.get("/:post_id", (req, res) => {
 		})
 		.populate("forum")
 		.exec((err, foundPost) => {
+			if (!foundPost) {
+				req.flash("error", "could not find post.");
+				return res.redirect("/forums");
+			}
 			Reply.find()
 				.where("post")
 				.equals(foundPost._id)
@@ -55,6 +59,7 @@ postRouter.get("/:post_id", (req, res) => {
 					res.render("posts/show", {
 						page: "forum",
 						post: foundPost,
+						forum: undefined,
 						currentPage: pageNumber,
 						replies: count,
 						pages: Math.ceil(count / perPage)

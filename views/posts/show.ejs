@@ -1,63 +1,86 @@
 <% include ../partials/header %>
 <section class="showcase showcase--content">
 	<div class="list">
-		<div class="list__controls">
+		<% if (user && (post.author.id.equals(user.id))) { %>
+		<form class="list__controls <%= pages < 2 ? 'list__controls--nonpaginate' : '' %>" action="/posts/<%= post.id %>/delete" method="POST">
+		<% } else { %>
+		<form class="list__controls <%= pages < 2 ? 'list__controls--nonpaginate' : '' %>" action="" method="">
+		<% } %>
 			<a class="list__control" href="/forums/<%= post.forum.id %>">
 				<i class="fas fa-chevron-left"></i>
-				<span><%= post.forum.title %></span>
 			</a>
 			<% if (!user) { %>
 			<a class="list__control" href="/login">Log In to Reply</a>
 			<% } else { %>
 			<a class="list__control" href="/replies/new/<%= post.id %>">New Reply</a>
 			<% } %>
+			<% if (pages > 1) { %>
 			<% include ../partials/paginator %>
-		</div>
+			<% } %>
+			<% if (user && (post.author.id.equals(user.id))) { %>
+				<a href="/posts/<%= post.id %>/edit" class="list__control list__control--edit">Edit</a>
+				<input class="list__control list__control--delete" type="submit" value="Delete">
+			<% } %>
+		</form>
 		<div class="list__section">
 			<div class="list__section__header list__section__header--nostat">
-				<h2>
+				<h2 class="list__content__title">
 					<%= post.title %>
 				</h2>
-				<p><%= post.content %></p>
+				<p class="list_content"><%= post.content %></p>
 				<p class="list__feature">
 					Posted <%= moment(post.createdAt).fromNow() %>
-					by <%= post.author.username %> - <%= replies %> replies
+					by <%= post.author.username %> - 
+					<%= replies %> <%= replies === 1 ? "reply" : "replies" %>
 				</p>
 			</div>
 			<% post.replies.forEach((reply, i) => { %>
-				<% if (i === post.replies.length - 1 && i === 0) { %>
-				<div class="list__item list__item--nostat list__item--single">
-				<% } else if (i === 0) { %>
-				<div class="list__item list__item--nostat list__item--top">
-				<% } else if (i === post.replies.length - 1) { %>
-				<div class="list__item list__item--nostat list__item--bottom">
-				<% } else { %>
-				<div class="list__item list__item--nostat">
+			<% if (i === post.replies.length - 1 && i === 0) { %>
+			<div class="list__item list__item--nostat list__item--single">
+			<% } else if (i === 0) { %>
+			<div class="list__item list__item--nostat list__item--top">
+			<% } else if (i === post.replies.length - 1) { %>
+			<div class="list__item list__item--nostat list__item--bottom">
+			<% } else { %>
+			<div class="list__item list__item--nostat">
+			<% } %>
+				<h3 class="list__feature list__item__feature">
+					<%= moment(reply.createdAt).fromNow() %>, <%= reply.author.username %> replied...
+				</h3>
+				<p class="list__item__content">
+					<%= reply.content %>
+				</p>
+				<% if (user && (reply.author.id.equals(user._id))) { %>
+				<form class="list__controls list__item__controls" action="/replies/<%= reply.id %>/delete" method="POST">
+					<a href="/replies/<%= reply.id %>/edit" class="list__control list__item__control list__item__control--edit">Edit</a>
+					<input class="list__control list__item__control list__item__control--delete" type="submit" value="Delete">
+				</form>
 				<% } %>
-					<h3 class="list__item__feature">
-						<%= moment(reply.createdAt).fromNow() %>, <%= post.author.username %> replied...
-					</h3>
-					<p class="list__item__content">
-						<%= reply.content %>
-					</p>
-				</div>
+			</div>
 			<% }); %>
 		</div>
 		<% if (post.replies.length > 0) { %>
-		<div class="list__controls list__controls--bottom">
+		<% if (user && (post.author.id.equals(user.id))) { %>
+		<form class="list__controls list__controls--bottom" action="/posts/<%= post.id %>/delete" method="POST">
+		<% } else { %>
+		<form class="list__controls list__controls--bottom" action="" method="">
+		<% } %>
 			<a class="list__control" href="/forums/<%= post.forum.id %>">
 				<i class="fas fa-chevron-left"></i>
-				<span>
-					<%= post.forum.title %>
-				</span>
 			</a>
 			<% if (!user) { %>
 			<a class="list__control" href="/login">Log In to Reply</a>
 			<% } else { %>
 			<a class="list__control" href="/replies/new/<%= post.id %>">New Reply</a>
 			<% } %>
+			<% if (pages > 1) { %>
 			<% include ../partials/paginator %>
-		</div>
+			<% } %>
+			<% if (user && (post.author.id.equals(user.id))) { %>
+				<a href="/posts/<%= post.id %>/edit" class="list__control list__control--edit">Edit</a>
+				<input class="list__control list__control--delete" type="submit" value="Delete">
+			<% } %>
+		</form>
 		<% } %>
 	</div>
 </section>

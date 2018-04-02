@@ -42,6 +42,10 @@ forumRouter.get("/:forum_id", (req, res) => {
 			}
 		})
 		.exec((err, foundForum) => {
+			if (!foundForum) {
+				req.flash("error", "could not find forum.");
+				return res.redirect("/forums");
+			}
 			Post.find().where("forum").equals(foundForum._id).count((err, count) => {
 				if (err) {
 					req.flash("error", "There was an error finding the post.");

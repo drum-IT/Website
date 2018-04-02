@@ -40,7 +40,10 @@ replyRouter.post("/:post_id", middleware.isLoggedIn, (req, res) => {
 			req.body.reply.topic = foundPost.topic;
 			Reply.create(req.body.reply, (err, createdReply) => {
 				if (err) {
-					req.flash("error", "There was an error creating the reply.");
+					req.flash(
+						"error",
+						"There was an error creating the reply."
+					);
 					return res.redirect("/posts/" + req.params.post_id);
 				}
 				foundPost.replies.push(createdReply.id);
@@ -58,13 +61,24 @@ replyRouter.post("/:post_id", middleware.isLoggedIn, (req, res) => {
 						foundForum.replies++;
 						foundForum.lastActive = Date.now();
 						foundForum.save();
-						Reply.find().where("post").equals(savedPost._id).count((err, count) => {
-							res.redirect("/posts/" + req.params.post_id + "?replies=" + count);
-						});
+						Reply.find()
+							.where("post")
+							.equals(savedPost._id)
+							.count((err, count) => {
+								res.redirect(
+									`/posts/${
+										req.params.post_id
+									}?replies=${count}`
+								);
+							});
 					});
 				});
 			});
 		});
+});
+
+replyRouter.post("/:reply_id/delete", (req, res) => {
+	res.send("I'll delete a reply.");
 });
 
 module.exports = replyRouter;
