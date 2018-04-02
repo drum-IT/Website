@@ -47,6 +47,12 @@
 				<h3 class="list__item__stat list__item__stat--1"><%= forum.posts.length %></h3>
 				<h3 class="list__item__stat list__item__stat--2"><%= forum.replies || 0 %></h3>
 				<h3 class="list__item__stat list__item__stat--3"><%= forum.lastActive ? moment(forum.lastActive).fromNow() : 'Never' %></h3>
+				<% if (user && (forum.author.id.equals(user._id))) { %>
+				<form class="list__controls list__item__controls" action="/forums/<%= forum.id %>/delete" method="POST">
+					<a href="/forums/<%= forum.id %>/edit" class="list__control list__item__control list__item__control--edit">Edit</a>
+					<input class="list__control list__item__control list__item__control--delete" type="submit" value="Delete">
+				</form>
+				<% } %>
 			</div>
 			<% }); %>
 		</div>

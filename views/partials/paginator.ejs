@@ -1,4 +1,6 @@
 <% if (pages && pages > 0) { %>
+<% const item = forum ? forum : post %>
+<% const type = forum ? "forums" : "posts" %>
 <ul class="paginator">
 	<% if (currentPage === 1) { %>
 	<li>
@@ -8,7 +10,7 @@
 	</li>
 	<% } else { %>
 	<li>
-		<a class="paginator__link paginator--first" href="/posts/<%= post.id %>">
+		<a class="paginator__link paginator--first" href="/<%= type %>/<%= item.id %>">
 			<i class="fas fa-chevron-circle-left"></i>
 		</a>
 	</li>
@@ -21,7 +23,7 @@
 	</li>
 	<% } else { %>
 	<li>
-		<a class="paginator__link" href="/posts/<%= post.id %>?page=<%= Number(currentPage) - 1 %>">
+		<a class="paginator__link" href="/<%= type %>/<%= item.id %>?page=<%= Number(currentPage) - 1 %>">
 			<i class="fas fa-chevron-left"></i>
 		</a>
 	</li>
@@ -34,7 +36,7 @@
 		<% if (i == currentPage) { %>
 		<li><a class="paginator__link paginator--active"><%= i %></a></li>
 		<% } else { %>
-		<li><a class="paginator__link" href="/posts/<%= post.id %>?page=<%= i %>"><%= i %></a></li>
+		<li><a class="paginator__link" href="/<%= type %>/<%= item.id %>?page=<%= i %>"><%= i %></a></li>
 		<% } %>
 		<% if (i == Number(currentPage) + 2 && i < pages) { %>
 		<li><a class="paginator__link paginator--disabled">...</a></li>
@@ -48,7 +50,7 @@
 	</li>
 	<% } else { %>
 	<li>
-		<a class="paginator__link" href="/posts/<%= post.id %>?page=<%= Number(currentPage) + 1 %>">
+		<a class="paginator__link" href="/<%= type %>/<%= item.id %>?page=<%= Number(currentPage) + 1 %>">
 			<i class="fas fa-chevron-right"></i>
 		</a>
 	</li>
@@ -61,7 +63,7 @@
 	</li>
 	<% } else { %>
 	<li>
-		<a class="paginator__link paginator--last" href="/posts/<%= post.id %>?page=<%= pages %>">
+		<a class="paginator__link paginator--last" href="/<%= type %>/<%= item.id %>?page=<%= pages %>">
 			<i class="fas fa-chevron-circle-right"></i>
 		</a>
 	</li>
