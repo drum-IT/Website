@@ -53,7 +53,7 @@ replyRouter.post("/:post_id", middleware.isLoggedIn, (req, res) => {
 						req.flash("error", "Error saving the post");
 						return res.redirect("/forums");
 					}
-					Forum.findById(savedPost.forum.id, (err, foundForum) => {
+					Forum.findById(savedPost.forum, (err, foundForum) => {
 						if (err) {
 							req.flash("error", "Error finding the forum");
 							return res.redirect("/forums");
@@ -78,7 +78,31 @@ replyRouter.post("/:post_id", middleware.isLoggedIn, (req, res) => {
 });
 
 replyRouter.post("/:reply_id/delete", (req, res) => {
-	res.send("I'll delete a reply.");
+	Reply.findById(req.params.reply_id, (err, foundReply) => {
+		if (err || !foundReply) {
+			req.flash("error", "Error finding the reply");
+			return res.redirect("/forums");
+		}
+		Post.findById(foundReply.post, (err, foundPost) => {
+			if (err || !foundPost) {
+				req.flash("error", "Error finding the post");
+				return res.redirect("/forums");
+			}
+			Forum.findById(foundPost.forum, (err, foundForum) => {
+				if (err || !foundPost) {
+					req.flash("error", "Error finding the post");
+					return res.redirect("/forums");
+				}
+				foundForum.replies--;
+				foundForum.save();
+				foundPost.replies.splice(foundPost.replies.indexOf(foundReply._id), 1);
+				foundPost.save((err, savedPost) => {
+					foundReply.remove();
+					res.redirect("/posts/" + savedPost.id);
+				});
+			});
+		});
+	});
 });
 
 module.exports = replyRouter;
