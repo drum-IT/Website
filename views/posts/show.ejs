@@ -2,15 +2,12 @@
 <section class="showcase showcase--content">
 	<div class="list">
 		<% if (user && (post.author.id.equals(user.id))) { %>
-		<form class="list__controls <%= pages < 2 ? 'nonpaginate' : '' %>" action="/posts/<%= post.id %>/delete" method="POST">
+		<form class="list__controls <%= pages < 2 ? 'list__controls--nonpaginate' : '' %>" action="/posts/<%= post.id %>/delete" method="POST">
 		<% } else { %>
-		<form class="list__controls <%= pages < 2 ? 'nonpaginate' : '' %>" action="" method="">
+		<form class="list__controls <%= pages < 2 ? 'list__controls--nonpaginate' : '' %>" action="" method="">
 		<% } %>
 			<a class="list__control" href="/forums/<%= post.forum.id %>">
 				<i class="fas fa-chevron-left"></i>
-				<span>
-					<%= post.forum.title %>
-				</span>
 			</a>
 			<% if (!user) { %>
 			<a class="list__control" href="/login">Log In to Reply</a>
@@ -21,8 +18,8 @@
 			<% include ../partials/paginator %>
 			<% } %>
 			<% if (user && (post.author.id.equals(user.id))) { %>
-				<a href="/posts/<%= post.id %>/edit" class="list__control list__item__control--edit">Edit</a>
-				<input class="list__control list__item__control--delete" type="submit" value="Delete">
+				<a href="/posts/<%= post.id %>/edit" class="list__control list__control--edit">Edit</a>
+				<input class="list__control list__control--delete" type="submit" value="Delete">
 			<% } %>
 		</form>
 		<div class="list__section">
@@ -48,7 +45,7 @@
 			<div class="list__item list__item--nostat">
 			<% } %>
 				<h3 class="list__feature list__item__feature">
-					<%= moment(reply.createdAt).fromNow() %>, <%= post.author.username %> replied...
+					<%= moment(reply.createdAt).fromNow() %>, <%= reply.author.username %> replied...
 				</h3>
 				<p class="list__item__content">
 					<%= reply.content %>
@@ -70,9 +67,6 @@
 		<% } %>
 			<a class="list__control" href="/forums/<%= post.forum.id %>">
 				<i class="fas fa-chevron-left"></i>
-				<span>
-					<%= post.forum.title %>
-				</span>
 			</a>
 			<% if (!user) { %>
 			<a class="list__control" href="/login">Log In to Reply</a>
@@ -83,8 +77,8 @@
 			<% include ../partials/paginator %>
 			<% } %>
 			<% if (user && (post.author.id.equals(user.id))) { %>
-				<a href="/posts/<%= post.id %>/edit" class="list__control list__item__control--edit">Edit</a>
-				<input class="list__control list__item__control--delete" type="submit" value="Delete">
+				<a href="/posts/<%= post.id %>/edit" class="list__control list__control--edit">Edit</a>
+				<input class="list__control list__control--delete" type="submit" value="Delete">
 			<% } %>
 		</form>
 		<% } %>

@@ -12,15 +12,14 @@
 
 		<% topics.forEach(topic => { %>
 		<div class="list__section">
-			<div class="list__section__header">
-				<div class="list__section__title">
-					<h2>
-						<%= topic.title %>
-					</h2>
-				</div>
-				<p class="list__section__label">Posts</p>
-				<p class="list__section__label">Replies</p>
-				<p class="list__section__label">Active</p>
+			<div class="list__section__header list__section__header--3stat">
+				<h2 class="list__section__title">
+					<%= topic.title %>
+				</h2>
+				<h5 class="list__section__content"><%= topic.description %></h5>
+				<p class="list__section__label label1">Posts</p>
+				<p class="list__section__label label2">Replies</p>
+				<p class="list__section__label label3">Active</p>
 			</div>
 
 			<% topic.forums.forEach((forum, i) => { %>

@@ -427,10 +427,6 @@ nav {
 		"controls controls controls controls controls controls";
 }
 
-.list__controls--bottom .list__control {
-	grid-row: 2;
-}
-
 .list__controls--nonpaginate {
 	grid-template-rows: auto;
 }
@@ -445,12 +441,21 @@ nav {
 	font-weight: 300;
 	outline: none;
 	padding: 8px;
+	cursor: pointer;
 	text-align: center;
 	text-decoration: none;
 }
 
 .list__control span {
 	margin-left: 3px;
+}
+
+.list__control--edit {
+	background: var(--gold);
+}
+
+.list__control--delete {
+	background: var(--red);
 }
 
 .paginator {
@@ -525,9 +530,31 @@ nav {
 	padding-right: 10px;
 }
 
+.list__section__header--3stat {
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		"title label1 label2 label3"
+		"content label1 label2 label3";
+}
+
+.label1 {
+	grid-area: label1;
+}
+
+.label2 {
+	grid-area: label2;
+}
+
+.label3 {
+	grid-area: label3;
+}
+
 .list__section__header--2stat {
-	display: grid;
 	grid-template-columns: auto repeat(2, 45px);
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		"title label1 label2"
+		"content label1 label2";
 }
 
 .list__section__header--nostat {
@@ -537,6 +564,13 @@ nav {
 
 .list__section__title {
 	color: var(--black);
+	grid-area: title;
+	margin: 0;
+}
+
+.list__section__content {
+	grid-area: content;
+	margin: 0;
 }
 
 .list__section__label {
@@ -552,7 +586,7 @@ nav {
 
 .list__content__title {
 	color: var(--black);
-	margin: 20px 0 -10px 0;
+	margin: 0;
 }
 
 .list__content {
@@ -683,27 +717,19 @@ nav {
 }
 
 .list__item__control {
-	align-self: center;
-	background: var(--blue);
-	border: none;
-	border-radius: 5px;
+	background: none;
 	color: var(--offwhite);
-	cursor: pointer;
-	font-size: 0.5rem;
-	font-weight: 300;
-	margin: 0;
-	outline: none;
-	padding: 5px 5px;
-	text-align: center;
-	text-decoration: none;
+	font-size: 0.6rem;
+	margin-bottom: 5px;
+	padding: 0;
 }
 
 .list__item__control--edit {
-	background: var(--gold);
+	color: var(--gold);
 }
 
 .list__item__control--delete {
-	background: var(--red);
+	color: var(--red);
 }
 
 /* FOOTER */

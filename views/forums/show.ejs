@@ -2,9 +2,9 @@
 <section class="showcase showcase--content">
 	<div class="list">
 		<% if (user && (forum.author.id.equals(user.id))) { %>
-		<form class="list__controls <%= pages < 2 ? 'nonpaginate' : '' %>" action="/forums/<%= forum.id %>/delete" method="POST">
+		<form class="list__controls <%= pages < 2 ? 'list__controls--nonpaginate' : '' %>" action="/forums/<%= forum.id %>/delete" method="POST">
 		<% } else { %>
-		<form class="list__controls <%= pages < 2 ? 'nonpaginate' : '' %>" action="" method="">
+		<form class="list__controls <%= pages < 2 ? 'list__controls--nonpaginate' : '' %>" action="" method="">
 		<% } %>
 			<a class="list__control" href="/forums">
 				<i class="fas fa-chevron-left"></i>
@@ -18,16 +18,21 @@
 			<% include ../partials/paginator %>
 			<% } %>
 			<% if (user && (forum.author.id.equals(user.id))) { %>
-				<a href="/forums/<%= forum.id %>/edit" class="list__control list__item__control--edit">Edit</a>
-				<input class="list__control list__item__control--delete" type="submit" value="Delete">
+				<a href="/forums/<%= forum.id %>/edit" class="list__control list__control--edit">Edit</a>
+				<input class="list__control list__control--delete" type="submit" value="Delete">
 			<% } %>
 		</form>
 
 		<div class="list__section">
 			<div class="list__section__header list__section__header--2stat">
-				<h2><%= forum.title %></h2>
-				<p class="list__section__label">Replies</p>
-				<p class="list__section__label">Active</p>
+				<h2 class="list__section__title">
+					<%= forum.title %>
+				</h2>
+				<h5 class="list__section__content">
+					<%= forum.description %>
+				</h5>
+				<p class="list__section__label label1">Replies</p>
+				<p class="list__section__label label2">Active</p>
 			</div>
 			<% forum.posts.forEach((post, i) => { %>
 			<% if (i === forum.posts.length - 1 && i === 0) { %>
@@ -83,8 +88,8 @@
 			<% include ../partials/paginator %>
 			<% } %>
 			<% if (user && (forum.author.id.equals(user.id))) { %>
-				<a href="/forums/<%= forum.id %>/edit" class="list__control list__item__control--edit">Edit</a>
-				<input class="list__control list__item__control--delete" type="submit" value="Delete">
+				<a href="/forums/<%= forum.id %>/edit" class="list__control list__control--edit">Edit</a>
+				<input class="list__control list__control--delete" type="submit" value="Delete">
 			<% } %>
 		</form>
 		<% } %>
