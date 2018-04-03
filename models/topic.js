@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const topicSchema = new mongoose.Schema({
 	title: String,
@@ -7,16 +7,16 @@ const topicSchema = new mongoose.Schema({
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
+			ref: 'User'
 		},
 		username: String
 	},
 	forums: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Forum"
+			ref: 'Forum'
 		}
 	]
 });
 
-module.exports = mongoose.model("Topic", topicSchema);
+module.exports = mongoose.model('Topic', topicSchema);

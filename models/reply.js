@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const replySchema = new mongoose.Schema({
 	content: String,
@@ -6,32 +6,32 @@ const replySchema = new mongoose.Schema({
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
+			ref: 'User'
 		},
 		username: String
 	},
 	topic: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Topic"
+		ref: 'Topic'
 	},
 	forum: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Forum"
+		ref: 'Forum'
 	},
 	post: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Post"
+		ref: 'Post'
 	},
 	reply: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Reply"
+		ref: 'Reply'
 	},
 	replies: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Reply"
+			ref: 'Reply'
 		}
 	]
 });
 
-module.exports = mongoose.model("Reply", replySchema);
+module.exports = mongoose.model('Reply', replySchema);

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
 	title: String,
@@ -7,25 +7,25 @@ const postSchema = new mongoose.Schema({
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
+			ref: 'User'
 		},
 		username: String
 	},
 	topic: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Topic"
+		ref: 'Topic'
 	},
 	forum: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Forum"
+		ref: 'Forum'
 	},
 	replies: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Reply"
+			ref: 'Reply'
 		}
 	],
 	lastActive: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model('Post', postSchema);
