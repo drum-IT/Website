@@ -54,10 +54,7 @@ forumRouter.get('/:forum_id', (req, res) => {
 				.equals(foundForum._id)
 				.count((err, count) => {
 					if (err) {
-						req.flash(
-							'error',
-							'There was an error finding the post.'
-						);
+						req.flash('error', 'There was an error finding the post.');
 						return res.redirect('/forums');
 					}
 					res.render('forums/show', {
@@ -87,7 +84,7 @@ forumRouter.post('/:topic_id', middleware.isLoggedIn, (req, res) => {
 				return res.redirect('/forums');
 			}
 			foundTopic.forums.push(createdForum.id);
-			foundTopic.save((err, savedTopic) => {
+			foundTopic.save(err => {
 				if (err) {
 					req.flash('error', 'There was an error saving the topic.');
 					return res.redirect('/forums');

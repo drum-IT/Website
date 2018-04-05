@@ -53,10 +53,7 @@ postRouter.get('/:post_id', (req, res) => {
 				.equals(foundPost._id)
 				.count((err, count) => {
 					if (err) {
-						req.flash(
-							'error',
-							'There was an error finding the reply.'
-						);
+						req.flash('error', 'There was an error finding the reply.');
 						return res.redirect('/forums');
 					}
 					res.render('posts/show', {
@@ -73,11 +70,7 @@ postRouter.get('/:post_id', (req, res) => {
 
 postRouter.post('/:forum_id', middleware.isLoggedIn, (req, res) => {
 	Forum.findById(req.params.forum_id, (err, foundForum) => {
-		if (err) {
-			req.flash('error', 'There was an error finding the forum.');
-			return res.redirect('/forums');
-		}
-		if (!foundForum) {
+		if (err || !foundForum) {
 			req.flash('error', 'There was an error finding the forum.');
 			return res.redirect('/forums');
 		}
@@ -94,7 +87,7 @@ postRouter.post('/:forum_id', middleware.isLoggedIn, (req, res) => {
 			}
 			foundForum.posts.push(createdPost.id);
 			foundForum.lastActive = Date.now();
-			foundForum.save((err, savedForum) => {
+			foundForum.save(err => {
 				if (err) {
 					req.flash('error', 'Error saving the forum');
 					return res.redirect('/forums');

@@ -1,34 +1,34 @@
-if (process.env.NODE_ENV !== "production") {
-	require("dotenv").config();
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
 }
-const bodyParser = require("body-parser");
-const express = require("express");
-const flash = require("connect-flash");
-const LocalStrategy = require("passport-local");
-const methodOverride = require("method-override");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
-const passport = require("passport");
+const bodyParser = require('body-parser');
+const express = require('express');
+const flash = require('connect-flash');
+const LocalStrategy = require('passport-local');
+const methodOverride = require('method-override');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
 // database === === ===
 mongoose.connect(process.env.MONGODB_URI);
 
 // models
-const User = require("./models/user");
+const User = require('./models/user');
 
 // express server
 const app = express();
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("dev"));
-app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));
+app.use(morgan('dev'));
+app.use(express.static(__dirname + '/public'));
+app.use(methodOverride('_method'));
 app.use(flash());
-app.locals.moment = require("moment");
+app.locals.moment = require('moment');
 
 // passport auth
 app.use(
-	require("express-session")({
+	require('express-session')({
 		secret: process.env.SESSION_SECRET,
 		resave: false,
 		saveUninitialized: false
@@ -41,35 +41,35 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // routes and routers
-const indexRouter = require("./routes/index");
-const userRouter = require("./routes/users");
-const topicRouter = require("./routes/topics");
-const forumRouter = require("./routes/forums");
-const postRouter = require("./routes/posts");
-const replyRouter = require("./routes/replies");
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/users');
+const topicRouter = require('./routes/topics');
+const forumRouter = require('./routes/forums');
+const postRouter = require('./routes/posts');
+const replyRouter = require('./routes/replies');
 
 app.use((req, res, next) => {
 	res.locals.user = req.user;
-	res.locals.error = req.flash("error");
-	res.locals.success = req.flash("success");
+	res.locals.error = req.flash('error');
+	res.locals.success = req.flash('success');
 	next();
 });
 
-app.use("/", indexRouter);
-app.use("/users", userRouter);
-app.use("/topics", topicRouter);
-app.use("/forums", forumRouter);
-app.use("/posts", postRouter);
-app.use("/replies", replyRouter);
+app.use('/', indexRouter);
+app.use('/users', userRouter);
+app.use('/topics', topicRouter);
+app.use('/forums', forumRouter);
+app.use('/posts', postRouter);
+app.use('/replies', replyRouter);
 
 // start the server
 app.listen(process.env.PORT || 5000, process.env.IP, () => {
-	console.log("Express Server has Started!");
+	console.log('Express Server has Started!');
 });
 
 // keep app awake with GET request every 5 minutes
-const http = require("http");
-setInterval(function() {
-		http.get("http://fuskerprod.herokuapp.com");
-		http.get("http://fuskerstage.herokuapp.com");
-}, 300000);
+// const http = require("http");
+// setInterval(function() {
+// 		http.get("http://fuskerprod.herokuapp.com");
+// 		http.get("http://fuskerstage.herokuapp.com");
+// }, 300000);
